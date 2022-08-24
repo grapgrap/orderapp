@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/orderapp/static/css/main.d2ac4f0b.css",
+    "main.js": "/orderapp/static/js/main.dc4ab617.js",
+    "index.html": "/orderapp/index.html",
+    "main.d2ac4f0b.css.map": "/orderapp/static/css/main.d2ac4f0b.css.map",
+    "main.dc4ab617.js.map": "/orderapp/static/js/main.dc4ab617.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d2ac4f0b.css",
+    "static/js/main.dc4ab617.js"
+  ]
+}
