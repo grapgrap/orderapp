@@ -5,3 +5,11 @@ html {
 body {
   margin: 0;
 }
+
+.App {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
