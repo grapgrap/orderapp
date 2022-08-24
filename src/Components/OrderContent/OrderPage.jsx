@@ -1,20 +1,25 @@
 import styled from 'styled-components';
 import Payment from './Payment';
-import OrderRequests from './OrderRequests';
+import Requests from './Requests';
 import UserInfo from './UserInfo';
 import Discount from './Discount';
 import OrderInfo from './OrderInfo';
+import { useState } from 'react';
 
 function OrderPage({ userInfo, setUserInfo }) {
+  const [orderRequest, setOrderRequest] = useState('벨은 누르지 말아주세요!');
+
   const onOrderCheck = () => {
     alert(
-      `주소: ${userInfo.address} ${userInfo.detail}\n전화번호: ${userInfo.phoneNum}\n주문정보: `
+      `주소: ${userInfo.address} ${userInfo.detail}\n
+      전화번호: ${userInfo.phoneNum}\n
+      주문 요청 사항: ${orderRequest}`
     );
   };
   return (
     <OrderPageWrap>
       <UserInfo userInfo={userInfo} setUserInfo={setUserInfo} />
-      <OrderRequests />
+      <Requests setOrderRequest={setOrderRequest} />
       <Payment />
       <Discount />
       <OrderInfo />
