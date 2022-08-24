@@ -6,14 +6,19 @@ import Discount from './Discount';
 import OrderInfo from './OrderInfo';
 
 function OrderPage({ userInfo, setUserInfo }) {
+  const onOrderCheck = () => {
+    alert(
+      `주소: ${userInfo.address} ${userInfo.detail}\n전화번호: ${userInfo.phoneNum}\n주문정보: `
+    );
+  };
   return (
     <OrderPageWrap>
-      <UserInfo />
+      <UserInfo userInfo={userInfo} setUserInfo={setUserInfo} />
       <OrderRequests />
       <Payment />
       <Discount />
       <OrderInfo />
-      <OrderBtn>결제하기</OrderBtn>
+      <OrderBtn onClick={onOrderCheck}>결제하기</OrderBtn>
     </OrderPageWrap>
   );
 }
