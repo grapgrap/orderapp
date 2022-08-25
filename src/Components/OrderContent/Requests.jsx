@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 function Requests({ setOrderRequest }) {
   const [isCustom, setIsCustom] = useState(false);
+  const [customLength, setCustomLength] = useState(0);
 
   const onChangeRequest = event => {
     if (event.target.value === '3') {
@@ -14,8 +15,12 @@ function Requests({ setOrderRequest }) {
     }
   };
   const onChangeCustom = event => {
-    setOrderRequest(event.target.value);
-    console.log(event);
+    if (event.target.value.length <= 60) {
+      setOrderRequest(event.target.value);
+      setCustomLength(event.target.value.length);
+    } else if (event.target.value.length > 60) {
+      // 60개까지만 출력
+    }
   };
 
   return (
@@ -30,7 +35,7 @@ function Requests({ setOrderRequest }) {
       {isCustom ? (
         <>
           <CustomTextArea onChange={onChangeCustom} />
-          <CustomTextNum>안녕?</CustomTextNum>
+          <CustomTextNum>{customLength}/60</CustomTextNum>
         </>
       ) : (
         <></>
@@ -63,5 +68,6 @@ export const CustomTextArea = styled.textarea`
 `;
 
 export const CustomTextNum = styled.label`
+  font-size: 0.8rem;
   text-align: right;
 `;
