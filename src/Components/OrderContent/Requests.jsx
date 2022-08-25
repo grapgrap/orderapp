@@ -20,6 +20,7 @@ function Requests({ setOrderRequest }) {
       setCustomLength(event.target.value.length);
     } else if (event.target.value.length > 60) {
       // 60개까지만 출력
+      event.target.value = event.target.value.slice(0, -1);
     }
   };
 
