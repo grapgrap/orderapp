@@ -42,7 +42,7 @@ function UserInfo({ userInfo, setUserInfo }) {
 export default UserInfo;
 
 export const UserInfoWrap = styled.div`
-  flex: 1;
+  margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
 `;

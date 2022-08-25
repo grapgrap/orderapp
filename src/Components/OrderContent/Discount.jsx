@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
 function Discount() {
-  return;
+  return <DiscountWrap></DiscountWrap>;
 }
 
 export default Discount;
+
+export const DiscountWrap = styled.div``;

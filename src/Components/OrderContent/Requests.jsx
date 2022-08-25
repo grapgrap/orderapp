@@ -48,7 +48,7 @@ function Requests({ setOrderRequest }) {
 export default Requests;
 
 export const ReuestsWrap = styled.div`
-  flex: 1;
+  margin-bottom: 1rem;
   display: flex;
   flex-direction: column;
 `;
