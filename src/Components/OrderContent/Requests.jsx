@@ -15,6 +15,7 @@ function Requests({ setOrderRequest }) {
   };
   const onChangeCustom = event => {
     setOrderRequest(event.target.value);
+    console.log(event);
   };
 
   return (
@@ -26,7 +27,14 @@ function Requests({ setOrderRequest }) {
         <option value="2">반찬은 안 주셔도 되요.</option>
         <option value="3">직접 입력</option>
       </RequestsSelect>
-      {isCustom ? <CustomTextArea onChange={onChangeCustom} /> : <></>}
+      {isCustom ? (
+        <>
+          <CustomTextArea onChange={onChangeCustom} />
+          <CustomTextNum>안녕?</CustomTextNum>
+        </>
+      ) : (
+        <></>
+      )}
     </ReuestsWrap>
   );
 }
@@ -47,9 +55,13 @@ export const ReuestsTitle = styled.span`
 
 export const RequestsSelect = styled.select`
   margin-top: 0.5rem;
-
-  option {
-  }
 `;
 
-export const CustomTextArea = styled.textarea``;
+export const CustomTextArea = styled.textarea`
+  margin-top: 0.5rem;
+  height: 5rem;
+`;
+
+export const CustomTextNum = styled.label`
+  text-align: right;
+`;
