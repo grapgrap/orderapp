@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/orderapp/static/css/main.c5c9a5c6.css",
-    "main.js": "/orderapp/static/js/main.20a63504.js",
+    "main.js": "/orderapp/static/js/main.84030596.js",
     "index.html": "/orderapp/index.html",
     "main.c5c9a5c6.css.map": "/orderapp/static/css/main.c5c9a5c6.css.map",
-    "main.20a63504.js.map": "/orderapp/static/js/main.20a63504.js.map"
+    "main.84030596.js.map": "/orderapp/static/js/main.84030596.js.map"
   },
   "entrypoints": [
     "static/css/main.c5c9a5c6.css",
-    "static/js/main.20a63504.js"
+    "static/js/main.84030596.js"
   ]
 }
