@@ -1,13 +1,22 @@
+import { useState } from 'react';
 import styled from 'styled-components';
 
 function Requests({ setOrderRequest }) {
+  const [isCustom, setIsCustom] = useState(false);
+
   const onChangeRequest = event => {
     if (event.target.value === '3') {
-      setOrderRequest('직접입력');
+      setIsCustom(true);
+      setOrderRequest('');
     } else {
       setOrderRequest(event.target[event.target.value].innerText);
+      setIsCustom(false);
     }
   };
+  const onChangeCustom = event => {
+    setOrderRequest(event.target.value);
+  };
+
   return (
     <ReuestsWrap>
       <ReuestsTitle>주문 요청 사항</ReuestsTitle>
@@ -17,6 +26,7 @@ function Requests({ setOrderRequest }) {
         <option value="2">반찬은 안 주셔도 되요.</option>
         <option value="3">직접 입력</option>
       </RequestsSelect>
+      {isCustom ? <CustomTextArea onChange={onChangeCustom} /> : <></>}
     </ReuestsWrap>
   );
 }
@@ -41,3 +51,5 @@ export const RequestsSelect = styled.select`
   option {
   }
 `;
+
+export const CustomTextArea = styled.textarea``;
