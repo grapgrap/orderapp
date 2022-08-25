@@ -5,9 +5,15 @@ import UserInfo from './UserInfo';
 import Discount from './Discount';
 import OrderInfo from './OrderInfo';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function OrderPage({ userInfo, setUserInfo }) {
+function OrderPage({ userInfo, setUserInfo, option, setOption }) {
+  let userNav = useNavigate();
+
+  // 주문 요청 사항
   const [orderRequest, setOrderRequest] = useState('벨은 누르지 말아주세요!');
+  const [isCustom, setIsCustom] = useState(false);
+  // 여기까지 주문 요청 사항
 
   const onOrderCheck = () => {
     alert(
@@ -15,11 +21,34 @@ function OrderPage({ userInfo, setUserInfo }) {
       전화번호: ${userInfo.phoneNum}\n
       주문 요청 사항: ${orderRequest}`
     );
+
+    if (isCustom === true) {
+      // 정렬하는 법 찾아야 함
+      if (option.length <= 7) {
+        setOption([
+          ...option,
+          {
+            key: option.length - 1,
+            value: option.length - 1,
+            label: orderRequest,
+          },
+        ]);
+      } else {
+        // 7 이상인 경우 하나 제거 후 하나 생성
+      }
+    }
+
+    userNav('/orderapp/');
   };
   return (
     <OrderPageWrap>
       <UserInfo userInfo={userInfo} setUserInfo={setUserInfo} />
-      <Requests setOrderRequest={setOrderRequest} />
+      <Requests
+        setOrderRequest={setOrderRequest}
+        isCustom={isCustom}
+        setIsCustom={setIsCustom}
+        option={option}
+      />
       <Payment />
       <Discount />
       <OrderInfo />
