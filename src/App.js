@@ -34,8 +34,6 @@ function App() {
     },
   ]);
 
-  console.log(option);
-
   return (
     <div className="App">
       <BrowserRouter>

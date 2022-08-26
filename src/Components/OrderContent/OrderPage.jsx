@@ -33,6 +33,8 @@ function OrderPage({ userInfo, setUserInfo, option, setOption }) {
             label: orderRequest,
           },
         ]);
+        // sort를 쓸 것인가
+        // 아니면 temp를 써서 확인해보기
       } else {
         // 7 이상인 경우 하나 제거 후 하나 생성
       }
