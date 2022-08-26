@@ -4,7 +4,7 @@ import Requests from './Requests';
 import UserInfo from './UserInfo';
 import Discount from './Discount';
 import OrderInfo from './OrderInfo';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function OrderPage({ userInfo, setUserInfo, option, setOption }) {
@@ -15,7 +15,9 @@ function OrderPage({ userInfo, setUserInfo, option, setOption }) {
   const [isCustom, setIsCustom] = useState(false);
   // 여기까지 주문 요청 사항
 
-  const onOrderCheck = () => {
+  console.log(option);
+
+  const onOrderCheck = async () => {
     alert(
       `주소: ${userInfo.address} ${userInfo.detail}\n
       전화번호: ${userInfo.phoneNum}\n
@@ -23,7 +25,6 @@ function OrderPage({ userInfo, setUserInfo, option, setOption }) {
     );
 
     if (isCustom === true) {
-      // 정렬하는 법 찾아야 함
       if (option.length <= 7) {
         setOption([
           ...option,
@@ -33,10 +34,8 @@ function OrderPage({ userInfo, setUserInfo, option, setOption }) {
             label: orderRequest,
           },
         ]);
-        // sort를 쓸 것인가
-        // 아니면 temp를 써서 확인해보기
       } else {
-        // 7 이상인 경우 하나 제거 후 하나 생성
+        // 7 이상인 경우 맨 앞에 하나 제거 후 하나 생성
       }
     }
 
