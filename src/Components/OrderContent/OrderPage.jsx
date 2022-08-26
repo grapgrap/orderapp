@@ -4,7 +4,7 @@ import Requests from './Requests';
 import UserInfo from './UserInfo';
 import Discount from './Discount';
 import OrderInfo from './OrderInfo';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function OrderPage({ userInfo, setUserInfo, option, setOption }) {

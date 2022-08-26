@@ -19,6 +19,7 @@ function Payment() {
       cardNum: '0123-4567-8912-3456',
     },
   ]);
+
   return (
     <PaymentWrap>
       <PaymentTitle>결제 수단</PaymentTitle>
@@ -27,13 +28,17 @@ function Payment() {
           {paymentList.map(item => {
             return (
               <>
-                <PaymentSlideContent>{item.cardName}</PaymentSlideContent>
+                {/* key prop 오류 내일 고쳐보자 */}
+                <PaymentSlideContent key={item.id}>
+                  {item.cardName}
+                </PaymentSlideContent>
               </>
             );
           })}
         </PaymentSlideList>
       </PaymentSlideWrap>
       <PaymentSlideRadioWrap>
+        {/* paymentList의 수만큼 라디오 버튼 만들기 */}
         <PaymentSlideRadio type="radio" name="radioBtn" />
         <PaymentSlideRadio type="radio" name="radioBtn" />
         <PaymentSlideRadio type="radio" name="radioBtn" />
@@ -56,14 +61,13 @@ export const PaymentTitle = styled.label`
 `;
 
 export const PaymentSlideWrap = styled.div`
-  flex: 1;
   max-width: 90rem;
   overflow: hidden;
   margin: 1rem;
 `;
 
 export const PaymentSlideList = styled.ul`
-  height: 100%;
+  height: 9rem;
   margin: 0 auto;
   padding: 0;
   white-space: nowrap;
@@ -79,7 +83,6 @@ export const PaymentSlideContent = styled.li`
 `;
 
 export const PaymentSlideRadioWrap = styled.div`
-  margin-bottom: 1rem;
   text-align: center;
 `;
 
