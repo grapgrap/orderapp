@@ -13,9 +13,6 @@ function OrderPage({ userInfo, setUserInfo, option, setOption }) {
   // 주문 요청 사항
   const [orderRequest, setOrderRequest] = useState('벨은 누르지 말아주세요!');
   const [isCustom, setIsCustom] = useState(false);
-  // 여기까지 주문 요청 사항
-
-  console.log(option);
 
   const onOrderCheck = async () => {
     alert(
@@ -25,7 +22,7 @@ function OrderPage({ userInfo, setUserInfo, option, setOption }) {
     );
 
     if (isCustom === true) {
-      if (option.length <= 7) {
+      if (option.length < 7) {
         setOption([
           ...option,
           {
@@ -35,7 +32,28 @@ function OrderPage({ userInfo, setUserInfo, option, setOption }) {
           },
         ]);
       } else {
-        // 7 이상인 경우 맨 앞에 하나 제거 후 하나 생성
+        const tempOption = option;
+        const defaultArr = [];
+        setOption([]);
+        for (let i = 0; i < 3; i++) {
+          defaultArr.push(tempOption[i]);
+          if (i === 2) defaultArr.push(tempOption[6]);
+        }
+        for (let i = 3; i < 5; i++) {
+          defaultArr.push({
+            key: i,
+            value: i,
+            label: tempOption[i + 1].label,
+          });
+        }
+        setOption([
+          ...defaultArr,
+          {
+            key: 5,
+            value: 5,
+            label: orderRequest,
+          },
+        ]);
       }
     }
 
