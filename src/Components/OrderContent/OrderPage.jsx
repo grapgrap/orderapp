@@ -32,6 +32,7 @@ function OrderPage({ userInfo, setUserInfo, option, setOption }) {
           },
         ]);
       } else {
+        // 의미 없는 변수명 변수명에 대해 한 번 더 생각해 보고 네이밍을 해보자
         const tempOption = option;
         const defaultArr = [];
         setOption([]);

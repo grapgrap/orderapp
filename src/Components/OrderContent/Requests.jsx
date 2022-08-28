@@ -4,6 +4,9 @@ import styled from 'styled-components';
 function Requests({ option, isCustom, setIsCustom, setOrderRequest }) {
   const [customLength, setCustomLength] = useState(0);
 
+  // 접근은 좋으나 확장성이 좋지 않다.
+  // 예전에 노마드 코더에서 배운 것처럼 CUSTOM 전역 변수를 써서 바꿔볼까?
+  // 아니면 다른 방법이 있으면 생각해봐야 겠다.
   const onChangeRequest = event => {
     if (event.target.value === '6') {
       setIsCustom(true);

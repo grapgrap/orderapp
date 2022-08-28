@@ -11,6 +11,8 @@ function App() {
     phoneNum: '01051906628',
   });
 
+  // option의 경우 하드 코딩이 되어 있으므로 state 말고 그냥 만들어서
+  // 추가하는 식으로 해봐야 겠다.
   const [option, setOption] = useState([
     {
       key: 0,

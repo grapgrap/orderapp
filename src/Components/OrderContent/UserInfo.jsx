@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 function UserInfo({ userInfo, setUserInfo }) {
+  // 상세 주소와 전화 번호를 변경하는 함수 2개를 만들어야 겠다.
   const onChangeDetails = event => {
     const { name, value } = event.target;
 
