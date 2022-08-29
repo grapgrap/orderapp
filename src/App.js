@@ -2,7 +2,7 @@ import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import OrderPage from './Components/OrderContent/OrderPage';
 import MainPage from './Components/MainPage/MainPage';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 function App() {
   const [userInfo, setUserInfo] = useState({

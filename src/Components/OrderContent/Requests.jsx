@@ -14,6 +14,7 @@ function Requests({ option, isCustom, setIsCustom, setOrderRequest }) {
       setIsCustom(false);
     }
   };
+
   const onChangeCustom = event => {
     if (event.target.value.length <= 60) {
       setOrderRequest(event.target.value);

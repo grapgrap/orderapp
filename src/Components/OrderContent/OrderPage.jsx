@@ -10,6 +10,7 @@ import { useNavigate } from 'react-router-dom';
 function OrderPage({ userInfo, setUserInfo }) {
   let userNav = useNavigate();
 
+  // 주문 요청 사항 옵션
   const option = [
     {
       key: 0,
@@ -27,24 +28,33 @@ function OrderPage({ userInfo, setUserInfo }) {
       label: '반찬은 안 주셔도 되요.',
     },
     {
-      key: 6,
+      key: 'CUSTOM',
       value: 'CUSTOM',
       label: '직접 입력',
     },
   ];
 
-  // 주문 요청 사항
+  // 주문 요청 사항 state
   const [orderRequest, setOrderRequest] = useState('벨은 누르지 말아주세요!');
+  const [additionalRequest, setAdditionalRequest] = useState([]);
   const [isCustom, setIsCustom] = useState(false);
 
-  const onOrderCheck = async () => {
+  const onOrderCheck = () => {
     alert(
-      `주소: ${userInfo.address} ${userInfo.detail}\n
-      전화번호: ${userInfo.phoneNum}\n
-      주문 요청 사항: ${orderRequest}`
+      `주소: ${userInfo.address} ${userInfo.detail}\n전화번호: ${userInfo.phoneNum}\n주문 요청 사항: ${orderRequest}`
     );
 
-    userNav('/orderapp/');
+    if (isCustom === true) {
+      setAdditionalRequest([
+        ...additionalRequest,
+        {
+          key: option.length - 1,
+          value: option.length - 1,
+          label: orderRequest,
+        },
+      ]);
+    }
+    //userNav('/orderapp/');
   };
 
   return (
