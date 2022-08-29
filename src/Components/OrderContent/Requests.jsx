@@ -1,14 +1,10 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-const CUSTOM_VALUE = '6';
+const CUSTOM_VALUE = 'CUSTOM';
 
 function Requests({ option, isCustom, setIsCustom, setOrderRequest }) {
   const [customLength, setCustomLength] = useState(0);
-
-  // 접근은 좋으나 확장성이 좋지 않다.
-  // 예전에 노마드 코더에서 배운 것처럼 CUSTOM 전역 변수를 써서 바꿔볼까?
-  // 아니면 다른 방법이 있으면 생각해봐야 겠다.
   const onChangeRequest = event => {
     if (event.target.value === CUSTOM_VALUE) {
       setIsCustom(true);
@@ -23,7 +19,6 @@ function Requests({ option, isCustom, setIsCustom, setOrderRequest }) {
       setOrderRequest(event.target.value);
       setCustomLength(event.target.value.length);
     } else if (event.target.value.length > 60) {
-      // 60개까지만 출력
       event.target.value = event.target.value.slice(0, -1);
     }
   };

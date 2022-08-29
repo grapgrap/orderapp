@@ -7,8 +7,31 @@ import OrderInfo from './OrderInfo';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function OrderPage({ userInfo, setUserInfo, option, setOption }) {
+function OrderPage({ userInfo, setUserInfo }) {
   let userNav = useNavigate();
+
+  const option = [
+    {
+      key: 0,
+      value: 0,
+      label: '벨은 누르지 말아주세요!',
+    },
+    {
+      key: 1,
+      value: 1,
+      label: '문 앞에 놓아 주시고 연락 주세요.',
+    },
+    {
+      key: 2,
+      value: 2,
+      label: '반찬은 안 주셔도 되요.',
+    },
+    {
+      key: 6,
+      value: 'CUSTOM',
+      label: '직접 입력',
+    },
+  ];
 
   // 주문 요청 사항
   const [orderRequest, setOrderRequest] = useState('벨은 누르지 말아주세요!');
@@ -21,45 +44,9 @@ function OrderPage({ userInfo, setUserInfo, option, setOption }) {
       주문 요청 사항: ${orderRequest}`
     );
 
-    if (isCustom === true) {
-      if (option.length < 7) {
-        setOption([
-          ...option,
-          {
-            key: option.length - 1,
-            value: option.length - 1,
-            label: orderRequest,
-          },
-        ]);
-      } else {
-        // 의미 없는 변수명 변수명에 대해 한 번 더 생각해 보고 네이밍을 해보자
-        const tempOption = option;
-        const defaultArr = [];
-        setOption([]);
-        for (let i = 0; i < 3; i++) {
-          defaultArr.push(tempOption[i]);
-          if (i === 2) defaultArr.push(tempOption[6]);
-        }
-        for (let i = 3; i < 5; i++) {
-          defaultArr.push({
-            key: i,
-            value: i,
-            label: tempOption[i + 1].label,
-          });
-        }
-        setOption([
-          ...defaultArr,
-          {
-            key: 5,
-            value: 5,
-            label: orderRequest,
-          },
-        ]);
-      }
-    }
-
     userNav('/orderapp/');
   };
+
   return (
     <OrderPageWrap>
       <UserInfo userInfo={userInfo} setUserInfo={setUserInfo} />
