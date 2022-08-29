@@ -2,22 +2,20 @@ import styled from 'styled-components';
 
 function UserInfo({ userInfo, setUserInfo }) {
   // 상세 주소와 전화 번호를 변경하는 함수 2개를 만들어야 겠다.
-  const onChangeDetails = event => {
-    const { name, value } = event.target;
+  const onChangeAddress = event => {
+    setUserInfo({
+      address: userInfo.address,
+      detail: event.target.value,
+      phoneNum: userInfo.phoneNum,
+    });
+  };
 
-    if (name === 'detail') {
-      setUserInfo({
-        address: userInfo.address,
-        detail: value,
-        phoneNum: userInfo.phoneNum,
-      });
-    } else if (name === 'phoneNum') {
-      setUserInfo({
-        address: userInfo.address,
-        detail: userInfo.detail,
-        phoneNum: value,
-      });
-    }
+  const onChangePhoneNum = event => {
+    setUserInfo({
+      address: userInfo.address,
+      detail: userInfo.detail,
+      phoneNum: event.target.value,
+    });
   };
 
   return (
@@ -28,13 +26,13 @@ function UserInfo({ userInfo, setUserInfo }) {
         name="detail"
         type="text"
         value={userInfo.detail}
-        onChange={onChangeDetails}
+        onChange={onChangeAddress}
       />
       <UserInput
         name="phoneNum"
         type="text"
         value={userInfo.phoneNum}
-        onChange={onChangeDetails}
+        onChange={onChangePhoneNum}
       />
     </UserInfoWrap>
   );
