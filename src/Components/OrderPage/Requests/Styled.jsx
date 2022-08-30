@@ -23,7 +23,7 @@ export const CustomTextArea = styled.textarea`
   height: 5rem;
 `;
 
-export const CustomTextNum = styled.label`
+export const CustomTextLength = styled.label`
   font-size: 0.8rem;
   text-align: right;
 `;
