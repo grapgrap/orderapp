@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Payment from './Payment';
-import Requests from './Requests';
-import UserInfo from './UserInfo';
+import Requests from './Requests/Requests';
+import UserInfo from './UserInfo/UserInfo';
 import Discount from './Discount';
 import OrderInfo from './OrderInfo';
 import { useState } from 'react';
@@ -36,7 +36,7 @@ function OrderPage({ userInfo, setUserInfo }) {
 
   // 주문 요청 사항 state
   const [orderRequest, setOrderRequest] = useState('벨은 누르지 말아주세요!');
-  const [additionalRequest, setAdditionalRequest] = useState([]);
+  const [additionalRequest, setAdditionalRequest] = useState(option);
   const [isCustom, setIsCustom] = useState(false);
 
   const onOrderCheck = () => {
@@ -45,14 +45,16 @@ function OrderPage({ userInfo, setUserInfo }) {
     );
 
     if (isCustom === true) {
-      setAdditionalRequest([
-        ...additionalRequest,
-        {
-          key: option.length - 1,
-          value: option.length - 1,
-          label: orderRequest,
-        },
-      ]);
+      if (additionalRequest.length < 3) {
+        setAdditionalRequest([
+          ...additionalRequest,
+          {
+            key: option.length - 1,
+            value: option.length - 1,
+            label: orderRequest,
+          },
+        ]);
+      }
     }
     //userNav('/orderapp/');
   };
@@ -65,6 +67,7 @@ function OrderPage({ userInfo, setUserInfo }) {
         isCustom={isCustom}
         setIsCustom={setIsCustom}
         option={option}
+        additionalRequest={additionalRequest}
       />
       <Payment />
       <Discount />

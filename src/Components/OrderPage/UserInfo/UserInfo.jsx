@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import * as Styled from './Styled.jsx';
 
 function UserInfo({ userInfo, setUserInfo }) {
   // 상세 주소와 전화 번호를 변경하는 함수 2개를 만들어야 겠다.
@@ -19,44 +19,23 @@ function UserInfo({ userInfo, setUserInfo }) {
   };
 
   return (
-    <UserInfoWrap>
-      <UserInfoTitle>주문자 정보</UserInfoTitle>
-      <UserAddress>{userInfo.address}</UserAddress>
-      <UserInput
+    <Styled.UserInfoWrap>
+      <Styled.UserInfoTitle>주문자 정보</Styled.UserInfoTitle>
+      <Styled.UserAddress>{userInfo.address}</Styled.UserAddress>
+      <Styled.UserInput
         name="detail"
         type="text"
         value={userInfo.detail}
         onChange={onChangeAddress}
       />
-      <UserInput
+      <Styled.UserInput
         name="phoneNum"
         type="text"
         value={userInfo.phoneNum}
         onChange={onChangePhoneNum}
       />
-    </UserInfoWrap>
+    </Styled.UserInfoWrap>
   );
 }
 
 export default UserInfo;
-
-export const UserInfoWrap = styled.div`
-  margin-bottom: 1rem;
-  display: flex;
-  flex-direction: column;
-`;
-
-export const UserInfoTitle = styled.span`
-  margin-top: 0.5rem;
-  font-size: 1.2rem;
-  font-weight: bold;
-`;
-
-export const UserAddress = styled.span`
-  margin-top: 0.5rem;
-`;
-
-export const UserInput = styled.input`
-  height: 1.5rem;
-  margin-top: 0.5rem;
-`;
