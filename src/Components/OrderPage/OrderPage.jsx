@@ -4,29 +4,25 @@ import UserInfo from './UserInfo/UserInfo';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function OrderPage({ userInfo, setUserInfo }) {
+function OrderPage({ user, setUser }) {
   let userNav = useNavigate();
 
   // 주문 요청 사항 옵션
   const option = [
     {
-      key: 0,
-      value: 0,
+      id: 0,
       label: '벨은 누르지 말아주세요!',
     },
     {
-      key: 1,
-      value: 1,
+      id: 1,
       label: '문 앞에 놓아 주시고 연락 주세요.',
     },
     {
-      key: 2,
-      value: 2,
+      id: 2,
       label: '반찬은 안 주셔도 되요.',
     },
     {
-      key: 'CUSTOM',
-      value: 'CUSTOM',
+      id: 'CUSTOM',
       label: '직접 입력',
     },
   ];
@@ -37,7 +33,7 @@ function OrderPage({ userInfo, setUserInfo }) {
 
   const onOrderCheck = () => {
     alert(
-      `주소: ${userInfo.address} ${userInfo.detail}\n전화번호: ${userInfo.phoneNum}\n주문 요청 사항: ${orderRequest}`
+      `주소: ${user.address} ${user.additional_address}\n전화번호: ${user.phone_number}\n주문 요청 사항: ${orderRequest}`
     );
 
     //userNav('/orderapp/');
@@ -45,7 +41,7 @@ function OrderPage({ userInfo, setUserInfo }) {
 
   return (
     <OrderPageWrap>
-      <UserInfo userInfo={userInfo} setUserInfo={setUserInfo} />
+      <UserInfo user={user} setUser={setUser} />
       <Requests />
       <OrderBtn onClick={onOrderCheck}>결제하기</OrderBtn>
     </OrderPageWrap>

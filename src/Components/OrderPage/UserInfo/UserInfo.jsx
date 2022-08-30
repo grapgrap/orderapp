@@ -1,37 +1,34 @@
 import * as Styled from './Styled.jsx';
 
-function UserInfo({ userInfo, setUserInfo }) {
-  // 상세 주소와 전화 번호를 변경하는 함수 2개를 만들어야 겠다.
+function UserInfo({ user, setUser }) {
   const onChangeAddress = event => {
-    setUserInfo({
-      address: userInfo.address,
-      detail: event.target.value,
-      phoneNum: userInfo.phoneNum,
-    });
+    setUser(current => ({
+      ...current,
+      additional_address: event.target.value,
+    }));
   };
 
   const onChangePhoneNum = event => {
-    setUserInfo({
-      address: userInfo.address,
-      detail: userInfo.detail,
-      phoneNum: event.target.value,
-    });
+    setUser(current => ({
+      ...current,
+      phone_number: event.target.value,
+    }));
   };
 
   return (
     <Styled.UserInfoWrap>
       <Styled.UserInfoTitle>주문자 정보</Styled.UserInfoTitle>
-      <Styled.UserAddress>{userInfo.address}</Styled.UserAddress>
+      <Styled.UserAddress>{user.address}</Styled.UserAddress>
       <Styled.UserInput
         name="detail"
         type="text"
-        value={userInfo.detail}
+        value={user.additional_address}
         onChange={onChangeAddress}
       />
       <Styled.UserInput
         name="phoneNum"
         type="text"
-        value={userInfo.phoneNum}
+        value={user.phone_number}
         onChange={onChangePhoneNum}
       />
     </Styled.UserInfoWrap>
