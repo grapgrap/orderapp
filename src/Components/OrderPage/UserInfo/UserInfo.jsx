@@ -22,13 +22,13 @@ function UserInfo({ user, setUser }) {
       <Styled.UserInput
         name="detail"
         type="text"
-        value={user.additional_address}
+        value={user.additional_address || ''}
         onChange={onChangeAddress}
       />
       <Styled.UserInput
         name="phoneNum"
         type="text"
-        value={user.phone_number}
+        value={user.phone_number || ''}
         onChange={onChangePhoneNum}
       />
     </Styled.UserInfoWrap>
