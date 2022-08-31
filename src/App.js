@@ -6,12 +6,19 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function App() {
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState({
+    info: {
+      address: '강원도 태백시 해지개길 26',
+      additional_address: '104동 301호',
+      phone_number: '010-5190-6628',
+    },
+  });
 
-  useEffect(() => {
-    getUser();
-  }, []);
+  // useEffect(() => {
+  //   getUser();
+  // }, []);
 
+  // 이 부분에서 useMemo와 useCallback을 활용해보자
   const getUser = async () => {
     await axios
       .get('http://localhost:4000/users/1n2pgi02k5')
@@ -35,7 +42,7 @@ function App() {
           <Route path="/orderapp" element={<MainPage />} />
           <Route
             path="/orderapp/order"
-            element={<OrderPage user={user.info} setUser={setUser} />}
+            element={<OrderPage user={user} setUser={setUser} />}
           />
         </Routes>
       </BrowserRouter>

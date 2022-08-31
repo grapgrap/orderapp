@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 function OrderPage({ user, setUser }) {
   let userNav = useNavigate();
+  // console.log(user);
 
   // 주문 요청 사항 옵션
   const option = [
@@ -37,10 +38,10 @@ function OrderPage({ user, setUser }) {
 
   const onOrderCheck = () => {
     alert(
-      `주소: ${user.address} ${user.additional_address}\n전화번호: ${user.phone_number}\n주문 요청 사항: ${orderRequest}`
+      `주소: ${user.info.address} ${user.info.additional_address}\n전화번호: ${user.info.phone_number}\n주문 요청 사항: ${orderRequest}`
     );
 
-    //userNav('/orderapp/');
+    userNav('/orderapp/');
   };
 
   return (
