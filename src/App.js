@@ -13,6 +13,19 @@ function App() {
       phone_number: '010-5190-6628',
     },
     requestList: [],
+    payment_methods: {
+      0: {
+        id: '1km2gm3',
+        vendor_name: '온새카드',
+        card_number: '1968109202950192',
+      },
+
+      1: {
+        id: '1gj29t1',
+        vendor_name: '샘송오일카드',
+        card_number: '1959196220129591',
+      },
+    },
   });
 
   // useEffect(() => {

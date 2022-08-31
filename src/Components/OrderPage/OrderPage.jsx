@@ -3,6 +3,7 @@ import Requests from './Requests/Requests';
 import UserInfo from './UserInfo/UserInfo';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Payment from './Payment/Payment';
 
 function OrderPage({ user, setUser }) {
   let userNav = useNavigate();
@@ -35,9 +36,12 @@ function OrderPage({ user, setUser }) {
   const [orderRequest, setOrderRequest] = useState('벨은 누르지 말아주세요!');
   const [isCustom, setIsCustom] = useState(false);
 
+  // 결제 수단 state
+  const [pay, setPay] = useState(user.payment_methods[0].vendor_name);
+
   const onOrderCheck = () => {
     alert(
-      `주소: ${user.info.address} ${user.info.additional_address}\n전화번호: ${user.info.phone_number}\n주문 요청 사항: ${orderRequest}`
+      `주소: ${user.info.address} ${user.info.additional_address}\n전화번호: ${user.info.phone_number}\n주문 요청 사항: ${orderRequest}\n결제 수단: ${pay}`
     );
 
     if (isCustom === true) {
@@ -58,7 +62,7 @@ function OrderPage({ user, setUser }) {
     userNav('/orderapp/');
   };
 
-  // console.log(user.requestList);
+  // console.log(user);
 
   return (
     <OrderPageWrap>
@@ -69,6 +73,7 @@ function OrderPage({ user, setUser }) {
         setIsCustom={setIsCustom}
         setOrderRequest={setOrderRequest}
       />
+      <Payment paymentMethods={user.payment_methods} setPay={setPay} />
       <OrderBtn onClick={onOrderCheck}>결제하기</OrderBtn>
     </OrderPageWrap>
   );
