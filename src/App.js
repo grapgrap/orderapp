@@ -18,9 +18,11 @@ function App() {
       .then(res => {
         console.log(res.data);
         setUser({
-          address: `${res.data.address.city} ${res.data.address.state} ${res.data.address.address_line}`,
-          additional_address: res.data.address.additional_address,
-          phone_number: res.data.phone_number.replace(/\-/g, ''),
+          info: {
+            address: `${res.data.address.city} ${res.data.address.state} ${res.data.address.address_line}`,
+            additional_address: res.data.address.additional_address,
+            phone_number: res.data.phone_number.replace(/\-/g, ''),
+          },
         });
       })
       .catch(error => console.log(error));
@@ -33,7 +35,7 @@ function App() {
           <Route path="/orderapp" element={<MainPage />} />
           <Route
             path="/orderapp/order"
-            element={<OrderPage user={user} setUser={setUser} />}
+            element={<OrderPage user={user.info} setUser={setUser} />}
           />
         </Routes>
       </BrowserRouter>
