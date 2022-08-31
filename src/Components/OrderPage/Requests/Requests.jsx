@@ -4,8 +4,9 @@ import * as Styled from './Styled.jsx';
 
 const CUSTOM_VALUE = 'CUSTOM';
 
-function Requests({ option, isCustom, setIsCustom }) {
+function Requests({ option, isCustom, setIsCustom, setOrderRequest }) {
   const requests = [];
+  const [custom, setCustom] = useState('');
 
   for (let i = 0; i < option.length; i++) {
     requests.push(
@@ -15,8 +16,15 @@ function Requests({ option, isCustom, setIsCustom }) {
     );
   }
 
+  // Select 변경 함수
   const onChangeSelect = event => {
     if (event.target.value === CUSTOM_VALUE) setIsCustom(true);
+  };
+
+  // 직접 입력 변경 함수
+  const onChangeCustom = event => {
+    setCustom(event.target.value);
+    setOrderRequest(event.target.value);
   };
 
   return (
@@ -27,8 +35,8 @@ function Requests({ option, isCustom, setIsCustom }) {
       </Styled.RequestsSelect>
       {isCustom ? (
         <>
-          <Styled.CustomTextArea />
-          <Styled.CustomTextLength>/60</Styled.CustomTextLength>
+          <Styled.CustomTextArea value={custom} onChange={onChangeCustom} />
+          <Styled.CustomTextLength>{custom.length}/60</Styled.CustomTextLength>
         </>
       ) : (
         <></>

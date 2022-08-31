@@ -6,7 +6,6 @@ import { useNavigate } from 'react-router-dom';
 
 function OrderPage({ user, setUser }) {
   let userNav = useNavigate();
-  // console.log(user);
 
   // 주문 요청 사항 옵션
   const option = [
@@ -41,13 +40,35 @@ function OrderPage({ user, setUser }) {
       `주소: ${user.info.address} ${user.info.additional_address}\n전화번호: ${user.info.phone_number}\n주문 요청 사항: ${orderRequest}`
     );
 
+    if (isCustom === true) {
+      if (user.requestList.length < 3) {
+        setUser(current => ({
+          ...current,
+          requestList: [orderRequest, ...current.requestList],
+        }));
+      } else {
+        user.requestList.pop();
+        setUser(current => ({
+          ...current,
+          requestList: [orderRequest, ...current.requestList],
+        }));
+      }
+    }
+
     userNav('/orderapp/');
   };
+
+  // console.log(user.requestList);
 
   return (
     <OrderPageWrap>
       <UserInfo user={user} setUser={setUser} />
-      <Requests option={option} isCustom={isCustom} setIsCustom={setIsCustom} />
+      <Requests
+        option={option}
+        isCustom={isCustom}
+        setIsCustom={setIsCustom}
+        setOrderRequest={setOrderRequest}
+      />
       <OrderBtn onClick={onOrderCheck}>결제하기</OrderBtn>
     </OrderPageWrap>
   );

@@ -12,6 +12,7 @@ function App() {
       additional_address: '104동 301호',
       phone_number: '010-5190-6628',
     },
+    requestList: [],
   });
 
   // useEffect(() => {
