@@ -13,7 +13,12 @@ function Payment({ paymentMethods, setPay }) {
   for (let i = 0; i < paymentMethods.length; i++) {
     card.push(
       <Styled.PaymentCard key={paymentMethods[i].id}>
-        {paymentMethods[i].vendor_name} {paymentMethods[i].card_number}
+        <Styled.VendorNameSpan>
+          {paymentMethods[i].vendor_name}
+        </Styled.VendorNameSpan>
+        <Styled.CardNumberSpan>
+          {paymentMethods[i].card_number}
+        </Styled.CardNumberSpan>
         <Styled.PaymentCardBtn id={i} onClick={onSelectPayment}>
           선택
         </Styled.PaymentCardBtn>
