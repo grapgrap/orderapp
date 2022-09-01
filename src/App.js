@@ -26,6 +26,10 @@ function App() {
         card_number: '1959196220129591',
       },
     },
+    discount: {
+      coupon: ['1jgj391j3ig', '1utn2k52k1', '996k3j2kd'],
+      points: 1000000000,
+    },
   });
 
   // useEffect(() => {
