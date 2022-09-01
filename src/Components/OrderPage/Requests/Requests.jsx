@@ -4,16 +4,37 @@ import * as Styled from './Styled.jsx';
 
 const CUSTOM_VALUE = 'CUSTOM';
 
-function Requests({ option, isCustom, setIsCustom, setOrderRequest }) {
+function Requests({
+  option,
+  additionalRequest,
+  isCustom,
+  setIsCustom,
+  setOrderRequest,
+}) {
   const requests = [];
   const [custom, setCustom] = useState('');
 
   for (let i = 0; i < option.length; i++) {
-    requests.push(
-      <Styled.RequestsSelectOption key={option[i].id} value={option[i].value}>
-        {option[i].label}
-      </Styled.RequestsSelectOption>
-    );
+    if (i !== option.length - 1) {
+      requests.push(
+        <Styled.RequestsSelectOption key={option[i].id} value={option[i].value}>
+          {option[i].label}
+        </Styled.RequestsSelectOption>
+      );
+    } else {
+      for (let j = 3; j < additionalRequest.length + 3; j++) {
+        requests.push(
+          <Styled.RequestsSelectOption key={j} value={j}>
+            {additionalRequest[j - 3]}
+          </Styled.RequestsSelectOption>
+        );
+      }
+      requests.push(
+        <Styled.RequestsSelectOption key={option[i].id} value={option[i].value}>
+          {option[i].label}
+        </Styled.RequestsSelectOption>
+      );
+    }
   }
 
   // Select 변경 함수

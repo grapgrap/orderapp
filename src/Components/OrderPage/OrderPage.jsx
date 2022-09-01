@@ -70,12 +70,13 @@ function OrderPage({ user, setUser }) {
       <UserInfo user={user} setUser={setUser} />
       <Requests
         option={option}
+        additionalRequest={user.requestList}
         isCustom={isCustom}
         setIsCustom={setIsCustom}
         setOrderRequest={setOrderRequest}
       />
       <Payment paymentMethods={user.payment_methods} setPay={setPay} />
-      <Discount />
+      <Discount discount={user.discount} />
       <OrderBtn onClick={onOrderCheck}>결제하기</OrderBtn>
     </OrderPageWrap>
   );
