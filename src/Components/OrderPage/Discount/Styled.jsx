@@ -12,10 +12,20 @@ export const DiscountTitle = styled.span`
   font-weight: bold;
 `;
 
-export const DiscountSection = styled.div``;
+export const DiscountSection = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 
-export const DiscountSpan = styled.span``;
+export const DiscountSpanWrap = styled.div``;
 
-export const DiscountInput = styled.input``;
+export const DiscountSectionSpan = styled.span`
+  margin-right: 0.5rem;
+  color: ${props => props.color || 'black'};
+`;
 
-export const DiscountBtn = styled.button``;
+export const DiscountInputWrap = styled.div``;
+
+export const DiscountInput = styled.input`
+  margin-right: 0.5rem;
+`;
