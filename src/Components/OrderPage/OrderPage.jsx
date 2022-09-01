@@ -4,6 +4,7 @@ import UserInfo from './UserInfo/UserInfo';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Payment from './Payment/Payment';
+import Discount from './Discount/Discount';
 
 function OrderPage({ user, setUser }) {
   let userNav = useNavigate();
@@ -74,6 +75,7 @@ function OrderPage({ user, setUser }) {
         setOrderRequest={setOrderRequest}
       />
       <Payment paymentMethods={user.payment_methods} setPay={setPay} />
+      <Discount />
       <OrderBtn onClick={onOrderCheck}>결제하기</OrderBtn>
     </OrderPageWrap>
   );
