@@ -13,6 +13,10 @@ export const OrderMenu = styled.div`
   flex: 1;
 `;
 
+export const OrderMenuCheck = styled.input``;
+
+export const OrderMenuLabel = styled.label``;
+
 export const OrderBtn = styled.button`
   margin-bottom: 2rem;
   height: 2rem;
