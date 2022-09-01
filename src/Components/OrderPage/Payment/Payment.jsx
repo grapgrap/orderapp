@@ -10,7 +10,7 @@ function Payment({ paymentMethods, setPay }) {
 
   // for문 길이는 나중에 수정해보자
   // 이 부분 수정 안하면 나중에 추가 시 문제가 될 수 있음
-  for (let i = 0; i < 2; i++) {
+  for (let i = 0; i < paymentMethods.length; i++) {
     card.push(
       <Styled.PaymentCard key={paymentMethods[i].id}>
         {paymentMethods[i].vendor_name} {paymentMethods[i].card_number}
@@ -21,7 +21,7 @@ function Payment({ paymentMethods, setPay }) {
     );
   }
 
-  //   console.log(paymentMethods[0].vendor_name);
+  // console.log(paymentMethods.length);
 
   return (
     <Styled.PaymentWrap>
