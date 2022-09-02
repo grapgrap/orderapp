@@ -1,6 +1,10 @@
 import * as Styled from './Styled.jsx';
 
-function Discount({ discount }) {
+function Discount({ discount, setDiscountMethods, setIsDiscountMenu }) {
+  const onSelectDiscount = () => {
+    setIsDiscountMenu(true);
+  };
+
   return (
     <Styled.DiscountWrap>
       <Styled.DiscountTitle>할인 수단 선택</Styled.DiscountTitle>
@@ -17,7 +21,11 @@ function Discount({ discount }) {
             placeholder="쿠폰을 선택해주세요."
             defaultValue={''}
           />
-          <Styled.DiscountInput type="button" value="선택" />
+          <Styled.DiscountInput
+            type="button"
+            value="선택"
+            onClick={onSelectDiscount}
+          />
         </Styled.DiscountInputWrap>
       </Styled.DiscountSection>
       <Styled.DiscountSection>

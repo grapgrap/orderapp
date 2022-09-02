@@ -66,6 +66,10 @@ function OrderPage({ user, setUser }) {
 
   // console.log(user);
 
+  // 할인 수단 선택
+  const [discountHistory, setDiscountHistory] = useState('');
+  const [isDiscountmenu, setIsDiscountMenu] = useState(false);
+
   // 주문 내역
   const menuList = [
     { id: 0, name: 'BBQ 황금올리브', price: 18000 },
@@ -84,7 +88,19 @@ function OrderPage({ user, setUser }) {
         setOrderRequest={setOrderRequest}
       />
       <Payment paymentMethods={user.payment_methods} setPay={setPay} />
-      <Discount discount={user.discount} />
+      <Discount
+        discount={user.discount}
+        isDiscountmenu={isDiscountmenu}
+        setDiscountMethods={setDiscountHistory}
+        setIsDiscountMenu={setIsDiscountMenu}
+      />
+      {isDiscountmenu ? (
+        <DiscountCouponMenuWrap
+          onClick={() => setIsDiscountMenu(false)}
+        ></DiscountCouponMenuWrap>
+      ) : (
+        <></>
+      )}
       <OrderHistory menuList={menuList} />
       <OrderBtn onClick={onOrderCheck}>결제하기</OrderBtn>
     </OrderPageWrap>
@@ -116,3 +132,13 @@ export const OrderBtn = styled.button`
     background: rgb(252, 134, 189);
   }
 `;
+
+export const DiscountCouponMenuWrap = styled.div`
+  position: absolute;
+  min-width: 20rem;
+  max-width: 30rem;
+  height: 100%;
+  background: rgb(128, 128, 128, 0.5);
+`;
+
+export const DiscountCouponMenu = styled.div``;
