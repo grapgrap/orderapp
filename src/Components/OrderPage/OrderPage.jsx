@@ -69,6 +69,14 @@ function OrderPage({ user, setUser }) {
   // 할인 수단 선택
   const [discountHistory, setDiscountHistory] = useState('');
   const [isDiscountmenu, setIsDiscountMenu] = useState(false);
+  const couponList = [];
+  for (let i = 0; i < user.discount.coupon.length; i++) {
+    couponList.push(
+      <DiscountCouponMenuContent key={user.discount.coupon[i].coupon_id}>
+        {user.discount.coupon[i].coupon_name}
+      </DiscountCouponMenuContent>
+    );
+  }
 
   // 주문 내역
   const menuList = [
@@ -95,9 +103,9 @@ function OrderPage({ user, setUser }) {
         setIsDiscountMenu={setIsDiscountMenu}
       />
       {isDiscountmenu ? (
-        <DiscountCouponMenuWrap
-          onClick={() => setIsDiscountMenu(false)}
-        ></DiscountCouponMenuWrap>
+        <DiscountCouponMenuWrap onClick={() => setIsDiscountMenu(false)}>
+          <DiscountCouponMenu>{couponList}</DiscountCouponMenu>
+        </DiscountCouponMenuWrap>
       ) : (
         <></>
       )}
@@ -141,4 +149,14 @@ export const DiscountCouponMenuWrap = styled.div`
   background: rgb(128, 128, 128, 0.5);
 `;
 
-export const DiscountCouponMenu = styled.div``;
+export const DiscountCouponMenu = styled.div`
+  position: absolute;
+  bottom: 0;
+  min-width: 18rem;
+  max-width: 28rem;
+  height: 15rem;
+  background: white;
+  margin: 0 1rem;
+`;
+
+export const DiscountCouponMenuContent = styled.div``;
