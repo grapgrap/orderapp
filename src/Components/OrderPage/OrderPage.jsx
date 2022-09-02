@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Payment from './Payment/Payment';
 import Discount from './Discount/Discount';
+import OrderHistory from './OrderHistory/OrderHistory';
 
 function OrderPage({ user, setUser }) {
   let userNav = useNavigate();
@@ -65,6 +66,13 @@ function OrderPage({ user, setUser }) {
 
   // console.log(user);
 
+  // 주문 내역
+  const menuList = [
+    { id: 0, name: 'BBQ 황금올리브', price: 18000 },
+    { id: 1, name: '맘스터치 싸이버거', price: 5400 },
+    { id: 2, name: '장충동 왕족발', price: 32000 },
+  ];
+
   return (
     <OrderPageWrap>
       <UserInfo user={user} setUser={setUser} />
@@ -77,6 +85,7 @@ function OrderPage({ user, setUser }) {
       />
       <Payment paymentMethods={user.payment_methods} setPay={setPay} />
       <Discount discount={user.discount} />
+      <OrderHistory menuList={menuList} />
       <OrderBtn onClick={onOrderCheck}>결제하기</OrderBtn>
     </OrderPageWrap>
   );
