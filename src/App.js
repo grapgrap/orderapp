@@ -27,7 +27,26 @@ function App() {
       },
     ],
     discount: {
-      coupon: ['1jgj391j3ig', '1utn2k52k1', '996k3j2kd'],
+      coupon: [
+        {
+          coupon_id: '1jgj391j3ig',
+          coupon_type: 'fixed',
+          coupon_name: '동해물과백두산이마르고닳도록쓸수있는백점만점쿠폰',
+          coupon_value: 100000,
+        },
+        {
+          coupon_id: '1utn2k52k1',
+          coupon_type: 'rated',
+          coupon_name: '이걸 왜주나 싶은 쿠폰',
+          coupon_value: 0.3,
+        },
+        {
+          coupon_id: '996k3j2kd',
+          coupon_type: 'rated',
+          coupon_name: '옛다 쿠폰',
+          coupon_value: 10,
+        },
+      ],
       points: 1000000000,
     },
   });
