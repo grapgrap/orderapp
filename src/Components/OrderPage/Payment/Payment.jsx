@@ -4,8 +4,10 @@ import * as CommonStyled from '../../Common/Styled.jsx';
 function Payment({ user, setPay }) {
   const cardList = [];
 
+  // 카드 선택 시 버튼 disable 구현하기
   const onSelectPayment = event => {
     setPay(user.payment_methods[event.target.id].vendor_name);
+    alert(`${user.payment_methods[event.target.id].vendor_name} 선택 완료`);
   };
 
   if (user.payment_methods) {
