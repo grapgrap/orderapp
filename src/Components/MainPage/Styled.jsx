@@ -1,14 +1,5 @@
 import styled from 'styled-components';
 
-export const MainPageWrap = styled.div`
-  min-width: 20rem;
-  max-width: 30rem;
-  height: 100%;
-  background-color: rgb(250, 250, 236);
-  display: flex;
-  flex-direction: column;
-`;
-
 export const MainPageDiv = styled.div`
   flex: 1;
 `;

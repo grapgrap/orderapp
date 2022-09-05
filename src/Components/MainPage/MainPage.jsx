@@ -1,4 +1,5 @@
 import * as Styled from './Styled.jsx';
+import * as CommonStyled from '../Common/Styled.jsx';
 import { useNavigate } from 'react-router-dom';
 
 function MainPage() {
@@ -6,10 +7,10 @@ function MainPage() {
   const onHandlerOrder = () => userNav('/orderapp/order');
 
   return (
-    <Styled.MainPageWrap>
+    <CommonStyled.PageWrap>
       <Styled.MainPageDiv></Styled.MainPageDiv>
       <Styled.MainPageBtn onClick={onHandlerOrder}>결제하기</Styled.MainPageBtn>
-    </Styled.MainPageWrap>
+    </CommonStyled.PageWrap>
   );
 }
 
