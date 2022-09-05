@@ -32,6 +32,9 @@ function OrderPage({ user, setUser }) {
   const [orderRequest, setOrderRequest] = useState('벨은 누르지 말아주세요!');
   const [isCustom, setIsCustom] = useState(false);
 
+  // 결제 수단 선택
+  const [pay, setPay] = useState('');
+
   return (
     <CommonStyled.PageWrap>
       <UserInfo user={user} setUser={setUser} />
@@ -42,7 +45,7 @@ function OrderPage({ user, setUser }) {
         setIsCustom={setIsCustom}
         setOrderRequest={setOrderRequest}
       />
-      <Payment user={user} />
+      <Payment user={user} setPay={setPay} />
     </CommonStyled.PageWrap>
   );
 }

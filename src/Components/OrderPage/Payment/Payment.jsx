@@ -1,8 +1,12 @@
 import * as Styled from './Styled.jsx';
 import * as CommonStyled from '../../Common/Styled.jsx';
 
-function Payment({ user }) {
+function Payment({ user, setPay }) {
   const cardList = [];
+
+  const onSelectPayment = event => {
+    setPay(user.payment_methods[event.target.id].vendor_name);
+  };
 
   if (user.payment_methods) {
     for (let i = 0; i < user.payment_methods.length; i++) {
@@ -14,7 +18,9 @@ function Payment({ user }) {
           <Styled.CardNumberSpan>
             {user.payment_methods[i].card_number}
           </Styled.CardNumberSpan>
-          <Styled.PaymentCardBtn id={i}>선택</Styled.PaymentCardBtn>
+          <Styled.PaymentCardBtn id={i} onClick={onSelectPayment}>
+            선택
+          </Styled.PaymentCardBtn>
         </Styled.PaymentCard>
       );
     }
