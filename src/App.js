@@ -18,6 +18,18 @@ function App() {
           additional_address: res.data.address.additional_address,
           phone_number: res.data.phone_number.replace(/\-/g, ''),
           additional_requests: [],
+          payment_methods: [
+            {
+              id: res.data.payment_methods[0].id,
+              vendor_name: res.data.payment_methods[0].vendor_name,
+              card_number: res.data.payment_methods[0].card_number,
+            },
+            {
+              id: res.data.payment_methods[1].id,
+              vendor_name: res.data.payment_methods[1].vendor_name,
+              card_number: res.data.payment_methods[1].card_number,
+            },
+          ],
         });
       })
       .catch(error => console.log(error));

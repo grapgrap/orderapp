@@ -3,6 +3,7 @@ import * as CommonStyled from '../Common/Styled.jsx';
 import UserInfo from './UserInfo/UserInfo.jsx';
 import Requests from './Requests/Requests.jsx';
 import { useState } from 'react';
+import Payment from './Payment/Payment.jsx';
 
 function OrderPage({ user, setUser }) {
   // 주문 요청 사항
@@ -41,6 +42,7 @@ function OrderPage({ user, setUser }) {
         setIsCustom={setIsCustom}
         setOrderRequest={setOrderRequest}
       />
+      <Payment user={user} />
     </CommonStyled.PageWrap>
   );
 }
