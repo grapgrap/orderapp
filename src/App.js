@@ -17,6 +17,7 @@ function App() {
           address: `${res.data.address.city} ${res.data.address.state} ${res.data.address.address_line}`,
           additional_address: res.data.address.additional_address,
           phone_number: res.data.phone_number.replace(/\-/g, ''),
+          additional_requests: [],
         });
       })
       .catch(error => console.log(error));
