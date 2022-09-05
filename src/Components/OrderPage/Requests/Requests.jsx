@@ -42,15 +42,28 @@ function Requests({
     }
   }
 
+  // Select 변경 함수
+  const onChangeSelect = event => {
+    if (event.target.value === CUSTOM_VALUE) setIsCustom(true);
+    else setIsCustom(false);
+  };
+
+  const onChangeCustom = event => {
+    setCustom(event.target.value);
+    setOrderRequest(event.target.value);
+  };
+
   return (
     <CommonStyled.OrderPageSection>
       <CommonStyled.OrderPageSectionTitle>
         주문 요청 사항
       </CommonStyled.OrderPageSectionTitle>
-      <Styled.RequestsSelect>{optionList}</Styled.RequestsSelect>
+      <Styled.RequestsSelect onChange={onChangeSelect}>
+        {optionList}
+      </Styled.RequestsSelect>
       {isCustom ? (
         <>
-          <Styled.CustomTextArea value={custom} />
+          <Styled.CustomTextArea value={custom} onChange={onChangeCustom} />
           <Styled.CustomTextLength>{custom.length}/60</Styled.CustomTextLength>
         </>
       ) : (
