@@ -37,6 +37,14 @@ function OrderPage({ user, setUser }) {
   // 결제 수단 선택
   const [pay, setPay] = useState('');
 
+  // 할인 수단 선택
+  // 할인 내역
+  const [discountHistory, setDiscountHistory] = useState('');
+  // 할인 수단 메뉴
+  const [isDiscountmenu, setIsDiscountMenu] = useState(false);
+  // 쿠폰 리스트
+  const couponList = [];
+
   // 주문 내역
   // 장바구니
   const orderList = [
@@ -56,8 +64,15 @@ function OrderPage({ user, setUser }) {
         setOrderRequest={setOrderRequest}
       />
       <Payment user={user} setPay={setPay} />
-      <Discount />
+      <Discount user={user} setIsDiscountMenu={setIsDiscountMenu} />
       <OrderInfo orderList={orderList} />
+      {isDiscountmenu ? (
+        <Styled.DiscountCouponMenuWrap>
+          <Styled.DiscountCouponMenu>{couponList}</Styled.DiscountCouponMenu>
+        </Styled.DiscountCouponMenuWrap>
+      ) : (
+        <></>
+      )}
     </CommonStyled.PageWrap>
   );
 }
