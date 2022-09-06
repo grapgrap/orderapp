@@ -6,61 +6,41 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 function App() {
-  const [user, setUser] = useState('');
-  const [coupon, setCoupon] = useState('');
+  const [user, setUser] = useState('ㅅㅂ');
+  const [coupon, setCoupon] = useState([]);
 
   const getUser = async () => {
     await axios
       .get('http://localhost:4000/users/1n2pgi02k5')
-      .then(res => {
-        console.log(res);
+      .then(response => {
         setUser({
-          address: `${res.data.address.city} ${res.data.address.state} ${res.data.address.address_line}`,
-          additional_address: res.data.address.additional_address,
-          phone_number: res.data.phone_number.replace(/\-/g, ''),
+          address: `${response.data.address.city} ${response.data.address.state} ${response.data.address.address_line}`,
+          additional_address: response.data.address.additional_address,
+          phone_number: response.data.phone_number.replace(/\-/g, ''),
           additional_requests: [],
           payment_methods: [
             {
-              id: res.data.payment_methods[0].id,
-              vendor_name: res.data.payment_methods[0].vendor_name,
-              card_number: res.data.payment_methods[0].card_number,
+              id: response.data.payment_methods[0].id,
+              vendor_name: response.data.payment_methods[0].vendor_name,
+              card_number: response.data.payment_methods[0].card_number,
             },
             {
-              id: res.data.payment_methods[1].id,
-              vendor_name: res.data.payment_methods[1].vendor_name,
-              card_number: res.data.payment_methods[1].card_number,
+              id: response.data.payment_methods[1].id,
+              vendor_name: response.data.payment_methods[1].vendor_name,
+              card_number: response.data.payment_methods[1].card_number,
             },
           ],
-          coupons: res.data.coupons,
-          points: res.data.points,
+          coupons: response.data.coupons,
+          points: response.data.points,
         });
       })
       .catch(error => console.log(error));
-  };
 
-  // 쿠폰 데이터
-  const getCoupon = async () => {
-    for (let i = 0; i < user.coupons.length; i++) {
-      await axios
-        .get(`http://localhost:4000/coupons/${user.coupons[i]}`)
-        .then(res => {
-          console.log(res);
-          setCoupon([
-            ...coupon,
-            {
-              coupon_id: user.coupons[i],
-              type: res.data.type,
-              name: res.data.name,
-              value: res.data.value,
-            },
-          ]);
-        });
-    }
+    console.log(user);
   };
 
   useEffect(() => {
     getUser();
-    getCoupon();
   }, []);
 
   return (
@@ -68,7 +48,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           {/* 메인 페이지 라우터 */}
-          <Route path="/orderapp" element={<MainPage />} />
+          <Route path="/orderapp" element={<MainPage />} user={user} />
           {/* 주문 페이지 라우터 */}
           <Route
             path="/orderapp/order"

@@ -16,7 +16,7 @@ function Discount({ user, setIsDiscountMenu }) {
         <Styled.DiscountSpanWrap>
           <Styled.DiscountSectionSpan>쿠폰</Styled.DiscountSectionSpan>
           <Styled.DiscountSectionSpan color="rgb(134, 134, 252)">
-            사용 가능한 쿠폰 {user.coupons.length}장
+            {/* 사용 가능한 쿠폰 {user.coupons.length}장 */}
           </Styled.DiscountSectionSpan>
         </Styled.DiscountSpanWrap>
         <Styled.DiscountInputWrap>

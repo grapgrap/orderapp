@@ -45,14 +45,13 @@ function OrderPage({ user, coupon, setUser }) {
   // 쿠폰 리스트
   const couponList = [];
   // 쿠폰 선택 메뉴
-  for (let i = 0; i < user.coupons.length; i++) {
+  for (let i = 0; i < coupon.length; i++) {
     couponList.push(
-      <Styled.DiscountCouponMenuContent key={i}>
-        {user.coupons[i]}
+      <Styled.DiscountCouponMenuContent key={coupon[i].id}>
+        {coupon[i].name}
       </Styled.DiscountCouponMenuContent>
     );
   }
-
   // 주문 내역
   // 장바구니
   const orderList = [
@@ -75,7 +74,7 @@ function OrderPage({ user, coupon, setUser }) {
       <Discount user={user} setIsDiscountMenu={setIsDiscountMenu} />
       <OrderInfo orderList={orderList} />
       {isDiscountmenu ? (
-        <Styled.DiscountCouponMenuWrap>
+        <Styled.DiscountCouponMenuWrap onClick={() => setIsDiscountMenu(false)}>
           <Styled.DiscountCouponMenu>{couponList}</Styled.DiscountCouponMenu>
         </Styled.DiscountCouponMenuWrap>
       ) : (
