@@ -30,6 +30,8 @@ function App() {
               card_number: res.data.payment_methods[1].card_number,
             },
           ],
+          coupons: res.data.coupons,
+          points: res.data.points,
         });
       })
       .catch(error => console.log(error));
