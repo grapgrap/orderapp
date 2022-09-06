@@ -7,7 +7,7 @@ import Payment from './Payment/Payment.jsx';
 import OrderInfo from './OrderInfo/OrderInfo.jsx';
 import Discount from './Discount/Discount.jsx';
 
-function OrderPage({ user, setUser }) {
+function OrderPage({ user, coupon, setUser }) {
   // 주문 요청 사항
   const option = [
     {
@@ -44,6 +44,14 @@ function OrderPage({ user, setUser }) {
   const [isDiscountmenu, setIsDiscountMenu] = useState(false);
   // 쿠폰 리스트
   const couponList = [];
+  // 쿠폰 선택 메뉴
+  for (let i = 0; i < user.coupons.length; i++) {
+    couponList.push(
+      <Styled.DiscountCouponMenuContent key={i}>
+        {user.coupons[i]}
+      </Styled.DiscountCouponMenuContent>
+    );
+  }
 
   // 주문 내역
   // 장바구니
