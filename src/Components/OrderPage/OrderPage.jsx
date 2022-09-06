@@ -5,6 +5,7 @@ import Requests from './Requests/Requests.jsx';
 import { useState } from 'react';
 import Payment from './Payment/Payment.jsx';
 import OrderInfo from './OrderInfo/OrderInfo.jsx';
+import Discount from './Discount/Discount.jsx';
 
 function OrderPage({ user, setUser }) {
   // 주문 요청 사항
@@ -55,6 +56,7 @@ function OrderPage({ user, setUser }) {
         setOrderRequest={setOrderRequest}
       />
       <Payment user={user} setPay={setPay} />
+      <Discount />
       <OrderInfo orderList={orderList} />
     </CommonStyled.PageWrap>
   );

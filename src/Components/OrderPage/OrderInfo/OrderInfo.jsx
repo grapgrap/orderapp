@@ -36,7 +36,6 @@ function OrderInfo({ orderList }) {
       );
     }
   }
-  // if (i === orderList.length - 1) {
 
   return (
     <CommonStyled.OrderPageSection>
