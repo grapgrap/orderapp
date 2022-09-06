@@ -1,8 +1,11 @@
 import * as Styled from './Styled.jsx';
 import * as CommonStyled from '../../Common/Styled.jsx';
 
-function Discount({ user }) {
-  console.log(user);
+function Discount({ user, setIsDiscountMenu }) {
+  // 메뉴 display
+  const onSelectDiscount = () => {
+    setIsDiscountMenu(true);
+  };
 
   return (
     <CommonStyled.OrderPageSection>
@@ -25,7 +28,7 @@ function Discount({ user }) {
           <Styled.DiscountInput
             type="button"
             value="선택"
-            // onClick={onSelectDiscount}
+            onClick={onSelectDiscount}
           />
         </Styled.DiscountInputWrap>
       </Styled.DiscountSection>
