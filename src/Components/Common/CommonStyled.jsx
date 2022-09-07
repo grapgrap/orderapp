@@ -23,3 +23,15 @@ export const PageButton = styled.button`
     background: rgb(252, 134, 189);
   }
 `;
+
+export const OrderPageSection = styled.div`
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const OrderPageSectionTitle = styled.span`
+  margin-top: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+`;
