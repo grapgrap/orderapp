@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Loading from './Components/Loading';
 import axios from 'axios';
 import MainPage from './Components/MainPage/MainPage';
+import OrderPage from './Components/OrderPage/OrderPage';
 
 function App() {
   const [user, setUser] = useState(null);
@@ -63,9 +64,9 @@ function App() {
             {isLoading ? (
               <>
                 {/* 메인 페이지 라우터 */}
-                <Route path="/orderapp" element={<MainPage user={user} />} />
+                <Route path="/orderapp" element={<MainPage />} />
                 {/* 주문 페이지 라우터 */}
-                <Route path="/orderapp/order" />
+                <Route path="/orderapp/order" element={<OrderPage />} />
               </>
             ) : (
               <>
