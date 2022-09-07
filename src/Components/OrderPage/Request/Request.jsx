@@ -4,7 +4,13 @@ import * as Styled from './Styled.jsx';
 
 const CUSTOM_VALUE = 'CUSTOM';
 
-function Request({ requestOption, isCustom, setIsCustom, setOrderRequest }) {
+function Request({
+  user,
+  requestOption,
+  isCustom,
+  setIsCustom,
+  setOrderRequest,
+}) {
   // 주문요청사항 기본 옵션
   const requestList = [];
   const [custom, setCustom] = useState('');
@@ -20,6 +26,13 @@ function Request({ requestOption, isCustom, setIsCustom, setOrderRequest }) {
         </Styled.RequestSelectOption>
       );
     } else {
+      for (let j = 3; j < user.additional_requests.length + 3; j++) {
+        requestList.push(
+          <Styled.RequestSelectOption key={j} value={j}>
+            {user.additional_requests[j - 3]}
+          </Styled.RequestSelectOption>
+        );
+      }
       requestList.push(
         <Styled.RequestSelectOption
           key={requestOption[i].id}
