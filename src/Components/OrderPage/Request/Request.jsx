@@ -36,7 +36,7 @@ function Request({ requestOption, isCustom, setIsCustom, setOrderRequest }) {
     if (event.target.value === CUSTOM_VALUE) setIsCustom(true);
     else {
       setIsCustom(false);
-      setOrderRequest(event.target.value);
+      setOrderRequest(event.target[event.target.value].innerText);
     }
   };
 
