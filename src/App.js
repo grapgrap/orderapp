@@ -66,7 +66,10 @@ function App() {
                 {/* 메인 페이지 라우터 */}
                 <Route path="/orderapp" element={<MainPage />} />
                 {/* 주문 페이지 라우터 */}
-                <Route path="/orderapp/order" element={<OrderPage />} />
+                <Route
+                  path="/orderapp/order"
+                  element={<OrderPage user={user} />}
+                />
               </>
             ) : (
               <>

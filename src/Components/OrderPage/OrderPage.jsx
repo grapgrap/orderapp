@@ -1,6 +1,6 @@
 import * as CommonStyled from '../Common/CommonStyled.jsx';
 
-function OrderPage() {
+function OrderPage({ user }) {
   // 결제하기
   const onOrderCheck = () => {
     alert(`결제완료!`);
