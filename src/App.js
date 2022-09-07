@@ -7,19 +7,34 @@ import MainPage from './Components/MainPage/MainPage';
 
 function App() {
   const [user, setUser] = useState(null);
-  const [coupon, setCoupon] = useState('');
+  const [coupon, setCoupon] = useState(null);
   const [isLoading, setLoading] = useState(false);
 
   // 사용자 정보 가져오기
   const getUser = async () => {
     await axios
       .get('http://localhost:4000/users/1n2pgi02k5')
-      .then(res => {
-        console.log(res);
+      .then(response => {
+        console.log(response);
         setUser({
-          address: res.data.address.city,
-          coupons: res.data.coupons,
-          points: res.data.points,
+          address: `${response.data.address.city} ${response.data.address.state} ${response.data.address.address_line}`,
+          additional_address: response.data.address.additional_address,
+          phone_number: response.data.phone_number.replace(/\-/g, ''),
+          additional_requests: [],
+          payment_methods: [
+            {
+              id: response.data.payment_methods[0].id,
+              vendor_name: response.data.payment_methods[0].vendor_name,
+              card_number: response.data.payment_methods[0].card_number,
+            },
+            {
+              id: response.data.payment_methods[1].id,
+              vendor_name: response.data.payment_methods[1].vendor_name,
+              card_number: response.data.payment_methods[1].card_number,
+            },
+          ],
+          coupons: response.data.coupons,
+          points: response.data.points,
         });
         console.log('데이터 받기 성공!');
       })
