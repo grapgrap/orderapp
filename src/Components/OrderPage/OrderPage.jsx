@@ -43,7 +43,7 @@ function OrderPage({ user, setUser }) {
   return (
     <CommonStyled.PageWrap>
       <UserInfo user={user} setUser={setUser} />
-      <Request />
+      <Request requestOption={requestOption} />
       <CommonStyled.PageButton onClick={onOrderCheck}>
         결제하기
       </CommonStyled.PageButton>
