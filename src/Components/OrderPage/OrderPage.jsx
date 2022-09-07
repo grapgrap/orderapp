@@ -4,7 +4,9 @@ import UserInfo from './UserInfo/UserInfo.jsx';
 function OrderPage({ user, setUser }) {
   // 결제하기
   const onOrderCheck = () => {
-    alert(`결제완료!`);
+    alert(
+      `주소: ${user.address}\n상세주소: ${user.additional_address}\n전화번호: ${user.phone_number}\n결제완료!`
+    );
   };
 
   return (
