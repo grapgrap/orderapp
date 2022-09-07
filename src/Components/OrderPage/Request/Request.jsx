@@ -40,6 +40,12 @@ function Request({ requestOption, isCustom, setIsCustom, setOrderRequest }) {
     }
   };
 
+  // Request Custom 변경 함수
+  const onChangeCustom = event => {
+    setCustom(event.target.value);
+    setOrderRequest(event.target.value);
+  };
+
   return (
     <CommonStyled.OrderPageSection>
       <CommonStyled.OrderPageSectionTitle>
@@ -50,8 +56,11 @@ function Request({ requestOption, isCustom, setIsCustom, setOrderRequest }) {
       </Styled.RequestSelect>
       {isCustom ? (
         <>
-          <Styled.CustomTextArea />
-          <Styled.CustomTextLength></Styled.CustomTextLength>
+          <Styled.CustomTextArea
+            defaultValue={custom || ''}
+            onChange={onChangeCustom}
+          />
+          <Styled.CustomTextLength>{custom.length}/60</Styled.CustomTextLength>
         </>
       ) : (
         <></>
