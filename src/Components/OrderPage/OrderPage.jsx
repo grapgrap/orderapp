@@ -38,7 +38,7 @@ function OrderPage({ user, setUser }) {
   const [isCustom, setIsCustom] = useState(false);
 
   // 결제 수단 선택
-  const [pay, setPay] = useState('');
+  const [pay, setPay] = useState(null);
 
   // 결제하기
   const onOrderCheck = () => {
