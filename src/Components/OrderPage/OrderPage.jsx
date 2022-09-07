@@ -2,8 +2,11 @@ import { useState } from 'react';
 import * as CommonStyled from '../Common/CommonStyled.jsx';
 import Request from './Request/Request.jsx';
 import UserInfo from './UserInfo/UserInfo.jsx';
+import { useNavigate } from 'react-router-dom';
 
 function OrderPage({ user, setUser }) {
+  let userNav = useNavigate();
+
   // 주문 요청 사항
   // 기본 주문 요청 사항 리스트
   const requestOption = [
@@ -38,12 +41,24 @@ function OrderPage({ user, setUser }) {
     alert(
       `주소: ${user.address}\n상세주소: ${user.additional_address}\n전화번호: ${user.phone_number}\n주문 요청 사항: ${orderRequest}\n결제완료!`
     );
+
+    // 사용자가 직접입력을 선택했을 경우
+    if (isCustom) {
+      if (user.additional_requests.length >= 3) user.additional_requests.pop();
+      setUser(current => ({
+        ...current,
+        additional_requests: [orderRequest, ...current.additional_requests],
+      }));
+    }
+
+    userNav('/orderapp');
   };
 
   return (
     <CommonStyled.PageWrap>
       <UserInfo user={user} setUser={setUser} />
       <Request
+        user={user}
         requestOption={requestOption}
         isCustom={isCustom}
         setIsCustom={setIsCustom}
