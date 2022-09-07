@@ -42,20 +42,25 @@ function OrderPage({ user, setUser }) {
 
   // 결제하기
   const onOrderCheck = () => {
-    alert(
-      `주소: ${user.address}\n상세주소: ${user.additional_address}\n전화번호: ${user.phone_number}\n주문 요청 사항: ${orderRequest}\n결제완료!`
-    );
+    if (pay) {
+      alert(
+        `주소: ${user.address}\n상세주소: ${user.additional_address}\n전화번호: ${user.phone_number}\n주문 요청 사항: ${orderRequest}\n결제 수단: ${pay}\n결제완료!`
+      );
 
-    // 사용자가 직접입력을 선택했을 경우
-    if (isCustom) {
-      if (user.additional_requests.length >= 3) user.additional_requests.pop();
-      setUser(current => ({
-        ...current,
-        additional_requests: [orderRequest, ...current.additional_requests],
-      }));
+      // 사용자가 직접입력을 선택했을 경우
+      if (isCustom) {
+        if (user.additional_requests.length >= 3)
+          user.additional_requests.pop();
+        setUser(current => ({
+          ...current,
+          additional_requests: [orderRequest, ...current.additional_requests],
+        }));
+      }
+
+      userNav('/orderapp');
+    } else {
+      alert(`결제하실 카드를 선택해주세요!`);
     }
-
-    userNav('/orderapp');
   };
 
   return (
