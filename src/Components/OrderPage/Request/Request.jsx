@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import * as CommonStyled from '../../Common/CommonStyled.jsx';
 import * as Styled from './Styled.jsx';
 
@@ -6,6 +7,8 @@ const CUSTOM_VALUE = 'CUSTOM';
 function Request({ requestOption, isCustom, setIsCustom, setOrderRequest }) {
   // 주문요청사항 기본 옵션
   const requestList = [];
+  const [custom, setCustom] = useState('');
+
   for (let i = 0; i < requestOption.length; i++) {
     if (i !== requestOption.length - 1) {
       requestList.push(
@@ -45,6 +48,14 @@ function Request({ requestOption, isCustom, setIsCustom, setOrderRequest }) {
       <Styled.RequestSelect onChange={onChangeSelect}>
         {requestList}
       </Styled.RequestSelect>
+      {isCustom ? (
+        <>
+          <Styled.CustomTextArea />
+          <Styled.CustomTextLength></Styled.CustomTextLength>
+        </>
+      ) : (
+        <></>
+      )}
     </CommonStyled.OrderPageSection>
   );
 }
