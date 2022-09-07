@@ -1,7 +1,9 @@
 import * as CommonStyled from '../../Common/CommonStyled.jsx';
 import * as Styled from './Styled.jsx';
 
-function Request({ requestOption }) {
+const CUSTOM_VALUE = 'CUSTOM';
+
+function Request({ requestOption, isCustom, setIsCustom, setOrderRequest }) {
   // 주문요청사항 기본 옵션
   const requestList = [];
   for (let i = 0; i < requestOption.length; i++) {
@@ -26,12 +28,23 @@ function Request({ requestOption }) {
     }
   }
 
+  // Request Select 변경 함수
+  const onChangeSelect = event => {
+    if (event.target.value === CUSTOM_VALUE) setIsCustom(true);
+    else {
+      setIsCustom(false);
+      setOrderRequest(event.target.value);
+    }
+  };
+
   return (
     <CommonStyled.OrderPageSection>
       <CommonStyled.OrderPageSectionTitle>
         주문 요청 사항
       </CommonStyled.OrderPageSectionTitle>
-      <Styled.RequestSelect>{requestList}</Styled.RequestSelect>
+      <Styled.RequestSelect onChange={onChangeSelect}>
+        {requestList}
+      </Styled.RequestSelect>
     </CommonStyled.OrderPageSection>
   );
 }
