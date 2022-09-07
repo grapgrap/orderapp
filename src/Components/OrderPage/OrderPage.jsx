@@ -1,4 +1,5 @@
 import * as CommonStyled from '../Common/CommonStyled.jsx';
+import Request from './Request/Request.jsx';
 import UserInfo from './UserInfo/UserInfo.jsx';
 
 function OrderPage({ user, setUser }) {
@@ -12,6 +13,7 @@ function OrderPage({ user, setUser }) {
   return (
     <CommonStyled.PageWrap>
       <UserInfo user={user} setUser={setUser} />
+      <Request />
       <CommonStyled.PageButton onClick={onOrderCheck}>
         결제하기
       </CommonStyled.PageButton>
