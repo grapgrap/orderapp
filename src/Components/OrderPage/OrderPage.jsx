@@ -1,7 +1,7 @@
 import * as CommonStyled from '../Common/CommonStyled.jsx';
 import UserInfo from './UserInfo/UserInfo.jsx';
 
-function OrderPage({ user }) {
+function OrderPage({ user, setUser }) {
   // 결제하기
   const onOrderCheck = () => {
     alert(`결제완료!`);
@@ -9,7 +9,7 @@ function OrderPage({ user }) {
 
   return (
     <CommonStyled.PageWrap>
-      <UserInfo />
+      <UserInfo user={user} setUser={setUser} />
       <CommonStyled.PageButton onClick={onOrderCheck}>
         결제하기
       </CommonStyled.PageButton>
