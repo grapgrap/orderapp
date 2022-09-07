@@ -37,6 +37,9 @@ function OrderPage({ user, setUser }) {
   // 직접 입력인지 아닌지
   const [isCustom, setIsCustom] = useState(false);
 
+  // 결제 수단 선택
+  const [pay, setPay] = useState('');
+
   // 결제하기
   const onOrderCheck = () => {
     alert(
@@ -65,7 +68,7 @@ function OrderPage({ user, setUser }) {
         setIsCustom={setIsCustom}
         setOrderRequest={setOrderRequest}
       />
-      <Payment user={user} />
+      <Payment user={user} setPay={setPay} />
       <CommonStyled.PageButton onClick={onOrderCheck}>
         결제하기
       </CommonStyled.PageButton>
