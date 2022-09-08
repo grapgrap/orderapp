@@ -40,6 +40,14 @@ function OrderPage({ user, setUser }) {
   // 결제 수단 선택
   const [pay, setPay] = useState(null);
 
+  // 배달 주문 내역
+  // 장바구니
+  const orderList = [
+    { id: 0, name: 'BBQ 황금올리브', price: 18000 },
+    { id: 1, name: '태백산 감자버거', price: 5400 },
+    { id: 2, name: '장충동 왕족발', price: 32000 },
+  ];
+
   // 결제하기
   const onOrderCheck = () => {
     if (pay) {
