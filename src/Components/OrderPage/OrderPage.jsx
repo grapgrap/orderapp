@@ -5,6 +5,7 @@ import UserInfo from './UserInfo/UserInfo.jsx';
 import { useNavigate } from 'react-router-dom';
 import Payment from './Payment/Payment.jsx';
 import OrderHistory from './OrderHistory/OrderHistory.jsx';
+import Discount from './Discount/Discount.jsx';
 
 function OrderPage({ user, setUser }) {
   let userNav = useNavigate();
@@ -91,6 +92,7 @@ function OrderPage({ user, setUser }) {
         setOrderRequest={setOrderRequest}
       />
       <Payment user={user} setPay={setPay} />
+      <Discount />
       <OrderHistory orderList={orderList} setTotalPrice={setTotalPrice} />
       <CommonStyled.PageButton onClick={onOrderCheck}>
         결제하기
