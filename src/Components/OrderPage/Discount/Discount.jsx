@@ -5,11 +5,16 @@ import * as Styled from './Styled.jsx';
 function Discount({
   user,
   totalPrice,
-  coupon,
   point,
   setPoint,
   setDiscountMethod,
+  setIsDiscountMenu,
 }) {
+  // 쿠폰 선택 메뉴 diplay 함수
+  const onSelectDiscount = () => {
+    setIsDiscountMenu(true);
+  };
+
   // 포인트 사용 함수
   const onUsePoint = event => {
     if (totalPrice < event.target.value) {
@@ -52,7 +57,11 @@ function Discount({
             placeholder="쿠폰을 선택해주세요."
             defaultValue={''}
           />
-          <Styled.DiscountInput type="button" value="선택" />
+          <Styled.DiscountInput
+            type="button"
+            value="선택"
+            onClick={onSelectDiscount}
+          />
         </Styled.DiscountInputWrap>
       </Styled.DiscountSection>
       <Styled.DiscountSection>

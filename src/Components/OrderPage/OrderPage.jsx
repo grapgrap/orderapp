@@ -8,6 +8,7 @@ import OrderHistory from './OrderHistory/OrderHistory.jsx';
 import Discount from './Discount/Discount.jsx';
 import axios from 'axios';
 import { useEffect } from 'react';
+import CouponMenu from './CouponMenu/CouponMenu.jsx';
 
 function OrderPage({ user, setUser }) {
   let userNav = useNavigate();
@@ -56,6 +57,7 @@ function OrderPage({ user, setUser }) {
         .get(`http://localhost:4000/coupons/${user.coupons[i]}`)
         .then(response => {
           couponList.push({
+            id: user.coupons[i],
             type: response.data.type,
             name: response.data.name,
             value: response.data.value,
@@ -76,6 +78,9 @@ function OrderPage({ user, setUser }) {
   // 둘다 사용하지 않고 있을 경우 "사용안함"
   // 쿠폰 사용일 경우 "쿠폰", 포인트 사용일 경우 "포인트"
   const [discountMethod, setDiscountMethod] = useState('사용안함');
+
+  // 쿠폰 선택 메뉴
+  const [isDiscountmenu, setIsDiscountMenu] = useState(false);
 
   // 포인트
   const [point, setPoint] = useState(0);
@@ -137,11 +142,18 @@ function OrderPage({ user, setUser }) {
           <Discount
             user={user}
             totalPrice={totalPrice}
-            coupon={coupon}
             point={point}
             setPoint={setPoint}
             setDiscountMethod={setDiscountMethod}
+            setIsDiscountMenu={setIsDiscountMenu}
           />
+          {isDiscountmenu ? (
+            <>
+              <CouponMenu coupon={coupon} />
+            </>
+          ) : (
+            <></>
+          )}
         </>
       ) : (
         <></>
