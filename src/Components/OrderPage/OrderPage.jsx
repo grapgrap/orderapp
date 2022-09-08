@@ -124,7 +124,7 @@ function OrderPage({ user, setUser }) {
       <Payment user={user} setPay={setPay} />
       {coupon ? (
         <>
-          <Discount coupon={coupon} />
+          <Discount user={user} coupon={coupon} />
         </>
       ) : (
         <></>
