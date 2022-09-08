@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom';
 import Payment from './Payment/Payment.jsx';
 import OrderHistory from './OrderHistory/OrderHistory.jsx';
 import Discount from './Discount/Discount.jsx';
+import axios from 'axios';
+import { useEffect } from 'react';
 
 function OrderPage({ user, setUser }) {
   let userNav = useNavigate();
@@ -41,6 +43,34 @@ function OrderPage({ user, setUser }) {
 
   // 결제 수단 선택
   const [pay, setPay] = useState(null);
+
+  // 할인 수단 선택
+  // 쿠폰 State
+  const [coupon, setCoupon] = useState(null);
+
+  // 쿠폰 get
+  const getCoupon = async () => {
+    const couponList = [];
+    for (let i = 0; i < user.coupons.length; i++) {
+      await axios
+        .get(`http://localhost:4000/coupons/${user.coupons[i]}`)
+        .then(response => {
+          couponList.push({
+            type: response.data.type,
+            name: response.data.name,
+            value: response.data.value,
+          });
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+    setCoupon(couponList);
+  };
+
+  useEffect(() => {
+    getCoupon();
+  }, []);
 
   // 배달 주문 내역
   // 장바구니
@@ -92,7 +122,13 @@ function OrderPage({ user, setUser }) {
         setOrderRequest={setOrderRequest}
       />
       <Payment user={user} setPay={setPay} />
-      <Discount />
+      {coupon ? (
+        <>
+          <Discount coupon={coupon} />
+        </>
+      ) : (
+        <></>
+      )}
       <OrderHistory orderList={orderList} setTotalPrice={setTotalPrice} />
       <CommonStyled.PageButton onClick={onOrderCheck}>
         결제하기
