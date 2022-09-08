@@ -73,9 +73,9 @@ function OrderPage({ user, setUser }) {
   }, []);
 
   // 쿠폰 사용인지 포인트 사용인지
-  // 둘다 사용하지 않고 있을 경우 null
-  // 쿠폰 사용일 경우 true, 포인트 사용일 경우 false
-  const [isDiscountMethod, setIsDiscountMethod] = useState(null);
+  // 둘다 사용하지 않고 있을 경우 0
+  // 쿠폰 사용일 경우 1, 포인트 사용일 경우 2
+  const [discountMethod, setDiscountMethod] = useState(0);
 
   // 포인트
   const [point, setPoint] = useState(0);
@@ -138,13 +138,18 @@ function OrderPage({ user, setUser }) {
             coupon={coupon}
             point={point}
             setPoint={setPoint}
-            setIsDiscountMethod={setIsDiscountMethod}
+            setDiscountMethod={setDiscountMethod}
           />
         </>
       ) : (
         <></>
       )}
-      <OrderHistory orderList={orderList} setTotalPrice={setTotalPrice} />
+      <OrderHistory
+        orderList={orderList}
+        point={point}
+        discountMethod={discountMethod}
+        setTotalPrice={setTotalPrice}
+      />
       <CommonStyled.PageButton onClick={onOrderCheck}>
         결제하기
       </CommonStyled.PageButton>

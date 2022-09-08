@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import * as CommonStyled from '../../Common/CommonStyled.jsx';
 import * as Styled from './Styled.jsx';
 
-function OrderHistory({ orderList, setTotalPrice }) {
+function OrderHistory({ orderList, point, discountMethod, setTotalPrice }) {
   // 배달 주문 내역
   const orderHistory = [];
   let resultPrice = 0;
@@ -24,6 +24,35 @@ function OrderHistory({ orderList, setTotalPrice }) {
     resultPrice = resultPrice + orderList[i].price;
   }
 
+  // 할인 적용
+  let discountHistory = [];
+  switch (discountMethod) {
+    case 0:
+      discountHistory = [];
+      break;
+    // 쿠폰
+    case 1:
+      discountHistory = [];
+      break;
+    // 포인트
+    case 2:
+      discountHistory = [];
+      discountHistory.push(
+        <Styled.OrderHistoryContent key="point">
+          <Styled.OrderHistoryContentSpan>
+            * 포인트
+          </Styled.OrderHistoryContentSpan>
+          <Styled.OrderHistoryContentSpan>
+            -{point.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}
+            원
+          </Styled.OrderHistoryContentSpan>
+        </Styled.OrderHistoryContent>
+      );
+      break;
+    default:
+      break;
+  }
+
   useEffect(() => {
     setTotalPrice(resultPrice);
   }, []);
@@ -35,12 +64,13 @@ function OrderHistory({ orderList, setTotalPrice }) {
       </CommonStyled.OrderPageSectionTitle>
       <Styled.OrderHistorySection>
         {orderHistory}
+        {discountHistory}
         <Styled.OrderHistoryContent key="Result">
           <Styled.OrderHistoryContentSpan>
             총 결제 금액
           </Styled.OrderHistoryContentSpan>
           <Styled.OrderHistoryContentSpan>
-            {resultPrice
+            {(resultPrice - point)
               .toString()
               .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}
             원
