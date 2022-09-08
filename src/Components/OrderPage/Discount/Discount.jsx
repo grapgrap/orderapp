@@ -1,7 +1,24 @@
 import * as CommonStyled from '../../Common/CommonStyled.jsx';
 import * as Styled from './Styled.jsx';
 
-function Discount({ user, coupon }) {
+function Discount({ user, totalPrice, coupon, point, setPoint }) {
+  // 포인트 사용 함수
+  const usePoint = event => {
+    if (totalPrice < event.target.value) {
+      alert('총 결제 금액보다 입력 포인트가 더 많습니다!');
+      setPoint(0);
+      event.target.value = 0;
+    } else {
+      if (user.points < event.target.value) {
+        alert('보유 포인트보다 입력 포인트가 더 많습니다!');
+        setPoint(0);
+        event.target.value = 0;
+      } else {
+        setPoint(event.target.value);
+      }
+    }
+  };
+
   return (
     <CommonStyled.OrderPageSection>
       <CommonStyled.OrderPageSectionTitle>
@@ -34,7 +51,11 @@ function Discount({ user, coupon }) {
           </Styled.DiscountSectionSpan>
         </Styled.DiscountSpanWrap>
         <Styled.DiscountInputWrap>
-          <Styled.DiscountInput type="text" defaultValue={''} />
+          <Styled.DiscountInput
+            type="text"
+            defaultValue={point || ''}
+            onChange={usePoint}
+          />
           <Styled.DiscountInput type="button" value="모두 사용" />
         </Styled.DiscountInputWrap>
       </Styled.DiscountSection>

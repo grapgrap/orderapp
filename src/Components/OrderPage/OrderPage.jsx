@@ -72,6 +72,9 @@ function OrderPage({ user, setUser }) {
     getCoupon();
   }, []);
 
+  // 포인트
+  const [point, setPoint] = useState(0);
+
   // 배달 주문 내역
   // 장바구니
   const orderList = [
@@ -124,7 +127,13 @@ function OrderPage({ user, setUser }) {
       <Payment user={user} setPay={setPay} />
       {coupon ? (
         <>
-          <Discount user={user} coupon={coupon} />
+          <Discount
+            user={user}
+            totalPrice={totalPrice}
+            coupon={coupon}
+            point={point}
+            setPoint={setPoint}
+          />
         </>
       ) : (
         <></>
