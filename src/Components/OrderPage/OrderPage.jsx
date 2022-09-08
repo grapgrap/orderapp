@@ -4,6 +4,7 @@ import Request from './Request/Request.jsx';
 import UserInfo from './UserInfo/UserInfo.jsx';
 import { useNavigate } from 'react-router-dom';
 import Payment from './Payment/Payment.jsx';
+import OrderHistory from './OrderHistory/OrderHistory.jsx';
 
 function OrderPage({ user, setUser }) {
   let userNav = useNavigate();
@@ -82,6 +83,7 @@ function OrderPage({ user, setUser }) {
         setOrderRequest={setOrderRequest}
       />
       <Payment user={user} setPay={setPay} />
+      <OrderHistory />
       <CommonStyled.PageButton onClick={onOrderCheck}>
         결제하기
       </CommonStyled.PageButton>
