@@ -48,12 +48,20 @@ function OrderPage({ user, setUser }) {
     { id: 1, name: '태백산 감자버거', price: 5400 },
     { id: 2, name: '장충동 왕족발', price: 32000 },
   ];
+  // 총 결제 금액
+  const [totalPrice, setTotalPrice] = useState(0);
 
   // 결제하기
   const onOrderCheck = () => {
     if (pay) {
       alert(
-        `주소: ${user.address}\n상세주소: ${user.additional_address}\n전화번호: ${user.phone_number}\n주문 요청 사항: ${orderRequest}\n결제 수단: ${pay}\n결제완료!`
+        `주소: ${user.address}\n상세주소: ${
+          user.additional_address
+        }\n전화번호: ${
+          user.phone_number
+        }\n주문 요청 사항: ${orderRequest}\n결제 수단: ${pay}\n총 결제 금액: ${totalPrice
+          .toString()
+          .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}원\n결제완료!`
       );
 
       // 사용자가 직접입력을 선택했을 경우
@@ -83,7 +91,7 @@ function OrderPage({ user, setUser }) {
         setOrderRequest={setOrderRequest}
       />
       <Payment user={user} setPay={setPay} />
-      <OrderHistory orderList={orderList} />
+      <OrderHistory orderList={orderList} setTotalPrice={setTotalPrice} />
       <CommonStyled.PageButton onClick={onOrderCheck}>
         결제하기
       </CommonStyled.PageButton>
