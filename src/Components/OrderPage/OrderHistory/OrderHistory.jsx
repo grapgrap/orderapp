@@ -1,7 +1,7 @@
 import * as CommonStyled from '../../Common/CommonStyled.jsx';
 import * as Styled from './Styled.jsx';
 
-function OrderHistory() {
+function OrderHistory({ orderList }) {
   return (
     <CommonStyled.OrderPageSection>
       <CommonStyled.OrderPageSectionTitle>

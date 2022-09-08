@@ -83,7 +83,7 @@ function OrderPage({ user, setUser }) {
         setOrderRequest={setOrderRequest}
       />
       <Payment user={user} setPay={setPay} />
-      <OrderHistory />
+      <OrderHistory orderList={orderList} />
       <CommonStyled.PageButton onClick={onOrderCheck}>
         결제하기
       </CommonStyled.PageButton>
