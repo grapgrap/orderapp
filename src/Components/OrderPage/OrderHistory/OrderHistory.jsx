@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import * as CommonStyled from '../../Common/CommonStyled.jsx';
 import * as Styled from './Styled.jsx';
 
@@ -21,8 +22,11 @@ function OrderHistory({ orderList, setTotalPrice }) {
       </Styled.OrderHistoryContent>
     );
     resultPrice = resultPrice + orderList[i].price;
-    setTotalPrice(resultPrice);
   }
+
+  useEffect(() => {
+    setTotalPrice(resultPrice);
+  }, []);
 
   return (
     <CommonStyled.OrderPageSection>
