@@ -23,7 +23,7 @@ function Discount({
         event.target.value = 0;
       } else {
         setPoint(event.target.value);
-        setDiscountMethod(2);
+        setDiscountMethod('포인트');
       }
     }
   };
@@ -31,7 +31,7 @@ function Discount({
   // 포인트 모두 사용 함수
   const onUsePointAll = () => {
     setPoint(totalPrice);
-    setDiscountMethod(2);
+    setDiscountMethod('포인트');
   };
 
   return (

@@ -27,15 +27,15 @@ function OrderHistory({ orderList, point, discountMethod, setTotalPrice }) {
   // 할인 적용
   let discountHistory = [];
   switch (discountMethod) {
-    case 0:
+    case '사용안함':
       discountHistory = [];
       break;
     // 쿠폰
-    case 1:
+    case '쿠폰':
       discountHistory = [];
       break;
     // 포인트
-    case 2:
+    case '포인트':
       discountHistory = [];
       discountHistory.push(
         <Styled.OrderHistoryContent key="point">
