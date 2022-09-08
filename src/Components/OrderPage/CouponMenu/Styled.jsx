@@ -18,4 +18,21 @@ export const DiscountCouponMenu = styled.div`
   margin: 0 1rem;
 `;
 
-export const DiscountCouponMenuContent = styled.div``;
+export const DiscountCouponMenuContent = styled.div`
+  margin: 0.2rem 0.5rem;
+  min-width: 16rem;
+  max-width: 26rem;
+  height: 3.5rem;
+  border: 1px solid gray;
+  display: flex;
+  flex-direction: column;
+`;
+
+export const DiscountCouponValue = styled.span`
+  color: rgb(134, 134, 252);
+  font-weight: bold;
+`;
+
+export const DiscountCouponName = styled.span`
+  font-size: 0.8rem;
+`;
