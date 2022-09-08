@@ -73,9 +73,9 @@ function OrderPage({ user, setUser }) {
   }, []);
 
   // 쿠폰 사용인지 포인트 사용인지
-  // 둘다 사용하지 않고 있을 경우 0
-  // 쿠폰 사용일 경우 1, 포인트 사용일 경우 2
-  const [discountMethod, setDiscountMethod] = useState(0);
+  // 둘다 사용하지 않고 있을 경우 "사용안함"
+  // 쿠폰 사용일 경우 "쿠폰", 포인트 사용일 경우 "포인트"
+  const [discountMethod, setDiscountMethod] = useState('사용안함');
 
   // 포인트
   const [point, setPoint] = useState(0);
@@ -98,7 +98,9 @@ function OrderPage({ user, setUser }) {
           user.additional_address
         }\n전화번호: ${
           user.phone_number
-        }\n주문 요청 사항: ${orderRequest}\n결제 수단: ${pay}\n총 결제 금액: ${totalPrice
+        }\n주문 요청 사항: ${orderRequest}\n결제 수단: ${pay}\n할인 수단: ${discountMethod}\n총 결제 금액: ${(
+          totalPrice - point
+        )
           .toString()
           .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}원\n결제완료!`
       );
