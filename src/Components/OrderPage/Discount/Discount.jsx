@@ -7,10 +7,19 @@ function Discount({
   coupon,
   point,
   setPoint,
-  setIsDiscountMethod,
+  setDiscountMethod,
 }) {
   // 포인트 사용 함수
   const onUsePoint = event => {
+    if (event.target.value === 0) {
+      setDiscountMethod(0);
+    } else {
+      if (event.target.value >= 100) {
+        console.log('100보다 큼');
+      } else {
+      }
+    }
+
     if (totalPrice < event.target.value) {
       alert('총 결제 금액보다 입력 포인트가 더 많습니다!');
       setPoint(0);
@@ -22,7 +31,7 @@ function Discount({
         event.target.value = 0;
       } else {
         setPoint(event.target.value);
-        setIsDiscountMethod(false);
+        setDiscountMethod(2);
       }
     }
   };
@@ -60,7 +69,9 @@ function Discount({
         </Styled.DiscountSpanWrap>
         <Styled.DiscountInputWrap>
           <Styled.DiscountInput
-            type="text"
+            type="number"
+            min="1000"
+            step="100"
             defaultValue={point || ''}
             onChange={onUsePoint}
           />
