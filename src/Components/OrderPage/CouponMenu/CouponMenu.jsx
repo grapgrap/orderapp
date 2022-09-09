@@ -4,16 +4,25 @@ import * as Styled from './Styled.jsx';
 const FIXED = 'fixed';
 const RATED = 'rated';
 
-function CouponMenu({ coupon }) {
+function CouponMenu({ coupon, setDiscountMethod, setIsDiscountMenu }) {
   // 정액형 쿠폰
   const fixedCoupon = [];
   // 정률형 쿠폰
   const ratedCoupon = [];
 
+  const onUseCoupon = event => {
+    setDiscountMethod('쿠폰');
+    console.log(event);
+    setIsDiscountMenu(false);
+  };
+
   for (let i = 0; i < coupon.length; i++) {
     if (coupon[i].type === FIXED) {
       fixedCoupon.push(
-        <Styled.DiscountCouponMenuContent key={coupon[i].id}>
+        <Styled.DiscountCouponMenuContent
+          key={coupon[i].id}
+          onClick={onUseCoupon}
+        >
           <Styled.DiscountCouponValue>
             {coupon[i].value
               .toString()
@@ -27,7 +36,10 @@ function CouponMenu({ coupon }) {
       );
     } else if (coupon[i].type === RATED) {
       ratedCoupon.push(
-        <Styled.DiscountCouponMenuContent key={coupon[i].id}>
+        <Styled.DiscountCouponMenuContent
+          key={coupon[i].id}
+          onClick={onUseCoupon}
+        >
           <Styled.DiscountCouponValue>
             {coupon[i].value}%
           </Styled.DiscountCouponValue>

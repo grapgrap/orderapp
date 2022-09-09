@@ -149,7 +149,11 @@ function OrderPage({ user, setUser }) {
           />
           {isDiscountmenu ? (
             <>
-              <CouponMenu coupon={coupon} />
+              <CouponMenu
+                coupon={coupon}
+                setDiscountMethod={setDiscountMethod}
+                setIsDiscountMenu={setIsDiscountMenu}
+              />
             </>
           ) : (
             <></>

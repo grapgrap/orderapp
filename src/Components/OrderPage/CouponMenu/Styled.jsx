@@ -26,13 +26,20 @@ export const DiscountCouponMenuContent = styled.div`
   border: 1px solid gray;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
+
+  :hover {
+    background: rgb(252, 134, 189, 0.3);
+  }
 `;
 
 export const DiscountCouponValue = styled.span`
   color: rgb(134, 134, 252);
   font-weight: bold;
+  flex: 1;
 `;
 
 export const DiscountCouponName = styled.span`
   font-size: 0.8rem;
+  flex: 1;
 `;
