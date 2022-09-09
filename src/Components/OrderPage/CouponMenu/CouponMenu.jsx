@@ -4,7 +4,12 @@ import * as Styled from './Styled.jsx';
 const FIXED = 'fixed';
 const RATED = 'rated';
 
-function CouponMenu({ coupon, setDiscountMethod, setIsDiscountMenu }) {
+function CouponMenu({
+  coupon,
+  setDiscountMethod,
+  setIsDiscountMenu,
+  setUsingCoupon,
+}) {
   // 정액형 쿠폰
   const fixedCoupon = [];
   // 정률형 쿠폰
@@ -12,7 +17,15 @@ function CouponMenu({ coupon, setDiscountMethod, setIsDiscountMenu }) {
 
   const onUseCoupon = event => {
     setDiscountMethod('쿠폰');
-    console.log(event);
+    coupon.map(coupon => {
+      if (coupon.id === event.target.parentNode.id) {
+        setUsingCoupon({
+          type: coupon.type,
+          name: coupon.name,
+          value: coupon.value,
+        });
+      }
+    });
     setIsDiscountMenu(false);
   };
 
@@ -21,6 +34,7 @@ function CouponMenu({ coupon, setDiscountMethod, setIsDiscountMenu }) {
       fixedCoupon.push(
         <Styled.DiscountCouponMenuContent
           key={coupon[i].id}
+          id={coupon[i].id}
           onClick={onUseCoupon}
         >
           <Styled.DiscountCouponValue>
@@ -38,6 +52,7 @@ function CouponMenu({ coupon, setDiscountMethod, setIsDiscountMenu }) {
       ratedCoupon.push(
         <Styled.DiscountCouponMenuContent
           key={coupon[i].id}
+          id={coupon[i].id}
           onClick={onUseCoupon}
         >
           <Styled.DiscountCouponValue>

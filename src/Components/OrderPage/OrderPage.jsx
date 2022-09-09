@@ -48,6 +48,7 @@ function OrderPage({ user, setUser }) {
   // 할인 수단 선택
   // 쿠폰 State
   const [coupon, setCoupon] = useState(null);
+  const [usingCoupon, setUsingCoupon] = useState(null);
 
   // 쿠폰 get
   const getCoupon = async () => {
@@ -153,6 +154,7 @@ function OrderPage({ user, setUser }) {
                 coupon={coupon}
                 setDiscountMethod={setDiscountMethod}
                 setIsDiscountMenu={setIsDiscountMenu}
+                setUsingCoupon={setUsingCoupon}
               />
             </>
           ) : (
@@ -164,6 +166,7 @@ function OrderPage({ user, setUser }) {
       )}
       <OrderHistory
         orderList={orderList}
+        usingCoupon={usingCoupon}
         point={point}
         discountMethod={discountMethod}
         setTotalPrice={setTotalPrice}
