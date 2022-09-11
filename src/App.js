@@ -8,7 +8,6 @@ import OrderPage from './Components/OrderPage/OrderPage';
 
 function App() {
   const [user, setUser] = useState(null);
-  const [coupon, setCoupon] = useState(null);
   const [isLoading, setLoading] = useState(false);
 
   // 사용자 정보 가져오기
