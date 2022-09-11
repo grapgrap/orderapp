@@ -2,5 +2,7 @@
 export const CUSTOM = 'Custom';
 
 // 쿠폰
+// 정액형
 export const FIXED = 'fixed';
+// 정률형
 export const RATED = 'rated';
