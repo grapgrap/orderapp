@@ -2,7 +2,16 @@ import { useEffect } from 'react';
 import * as CommonStyled from '../../Common/CommonStyled.jsx';
 import * as Styled from './Styled.jsx';
 
-function OrderHistory({ orderList, point, discountMethod, setTotalPrice }) {
+const FIXED = 'fixed';
+const RATED = 'rated';
+
+function OrderHistory({
+  orderList,
+  usingCoupon,
+  point,
+  discountMethod,
+  setTotalPrice,
+}) {
   // 배달 주문 내역
   const orderHistory = [];
   let resultPrice = 0;
@@ -23,9 +32,9 @@ function OrderHistory({ orderList, point, discountMethod, setTotalPrice }) {
     );
     resultPrice = resultPrice + orderList[i].price;
   }
-
   // 할인 적용
   let discountHistory = [];
+  let discountPrice = 0;
   switch (discountMethod) {
     case '사용안함':
       discountHistory = [];
@@ -33,21 +42,48 @@ function OrderHistory({ orderList, point, discountMethod, setTotalPrice }) {
     // 쿠폰
     case '쿠폰':
       discountHistory = [];
+      discountPrice = 0;
+      if (usingCoupon.type === FIXED) {
+        if (resultPrice < usingCoupon.value) discountPrice = resultPrice;
+        else discountPrice = usingCoupon.value;
+      } else if (usingCoupon.type === RATED) {
+      }
+      discountHistory.push(
+        <Styled.OrderHistoryContent key="coupon">
+          <Styled.OrderHistoryContentSpan>
+            * 쿠폰
+          </Styled.OrderHistoryContentSpan>
+          <Styled.OrderHistoryContentSpan>
+            -
+            {discountPrice
+              .toString()
+              .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}
+            원
+          </Styled.OrderHistoryContentSpan>
+        </Styled.OrderHistoryContent>
+      );
+
+      resultPrice = resultPrice - discountPrice;
       break;
     // 포인트
     case '포인트':
       discountHistory = [];
+      discountPrice = point;
       discountHistory.push(
         <Styled.OrderHistoryContent key="point">
           <Styled.OrderHistoryContentSpan>
             * 포인트
           </Styled.OrderHistoryContentSpan>
           <Styled.OrderHistoryContentSpan>
-            -{point.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}
+            -
+            {discountPrice
+              .toString()
+              .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}
             원
           </Styled.OrderHistoryContentSpan>
         </Styled.OrderHistoryContent>
       );
+      resultPrice = resultPrice - discountPrice;
       break;
     default:
       break;
@@ -70,7 +106,7 @@ function OrderHistory({ orderList, point, discountMethod, setTotalPrice }) {
             총 결제 금액
           </Styled.OrderHistoryContentSpan>
           <Styled.OrderHistoryContentSpan>
-            {(resultPrice - point)
+            {resultPrice
               .toString()
               .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}
             원
