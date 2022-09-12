@@ -48,10 +48,27 @@ function OrderPage({ user, setUser }) {
     getCoupon();
   }, []);
 
+  // 결제하기
+  const onCompletePayment = () => {
+    alert(
+      `주소: ${result.orderer.address}\n상세주소: ${
+        result.orderer.additional_address
+      }\n전화번호: ${result.orderer.phone_number}\n주문 요청 사항: ${
+        result.request
+      }\n결제 수단: ${result.payment}\n할인 수단: ${
+        result.discount
+      }\n총 결제 금액: ${result.total_price
+        .toString()
+        .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}원\n결제완료!`
+    );
+  };
+
   if (coupon) {
     return (
       <CommonStyled.PageWrap>
-        <CommonStyled.PageButton>결제하기</CommonStyled.PageButton>
+        <CommonStyled.PageButton onClick={onCompletePayment}>
+          결제하기
+        </CommonStyled.PageButton>
       </CommonStyled.PageWrap>
     );
   } else return null;
