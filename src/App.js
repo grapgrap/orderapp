@@ -52,7 +52,6 @@ function App() {
 
   useEffect(() => {
     loading();
-    // user 데이터와 coupon 데이터가 존재한다면 로딩 끝.
   }, []);
 
   if (user) {
@@ -67,7 +66,8 @@ function App() {
                 {/* 주문 페이지 라우터 */}
                 <Route
                   path="/orderapp/order"
-                  element={<OrderPage user={user} setUser={setUser} />}
+                  element={<OrderPage />}
+                  user={user}
                 />
               </>
             ) : (
