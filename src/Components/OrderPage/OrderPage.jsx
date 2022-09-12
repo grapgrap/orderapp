@@ -118,7 +118,7 @@ function OrderPage({ user, setUser }) {
           setIsCustom={setIsCustom}
           setResult={setResult}
         />
-        <Payment />
+        <Payment user={user} />
         <CommonStyled.PageButton onClick={onCompletePayment}>
           결제하기
         </CommonStyled.PageButton>
