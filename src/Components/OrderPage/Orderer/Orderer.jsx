@@ -26,7 +26,7 @@ function Orderer({ user, result, setResult }) {
   return (
     <CommonStyled.OrderPageSection>
       <CommonStyled.OrderPageSectionTitle>
-        사용자 정보
+        주문자 정보
       </CommonStyled.OrderPageSectionTitle>
       <Styled.UserAddress>{user.address}</Styled.UserAddress>
       <Styled.UserInput
