@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as CommonStyled from '../Common/CommonStyled.jsx';
 import Orderer from './Orderer/Orderer.jsx';
+import Payment from './Payment/Payment.jsx';
 import Request from './Request/Request.jsx';
 
 function OrderPage({ user, setUser }) {
@@ -117,6 +118,7 @@ function OrderPage({ user, setUser }) {
           setIsCustom={setIsCustom}
           setResult={setResult}
         />
+        <Payment />
         <CommonStyled.PageButton onClick={onCompletePayment}>
           결제하기
         </CommonStyled.PageButton>
