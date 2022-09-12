@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import * as CommonStyled from '../Common/CommonStyled.jsx';
+import Orderer from './Orderer/Orderer.jsx';
 
 function OrderPage({ user, setUser }) {
   // 결과 State
@@ -66,6 +67,7 @@ function OrderPage({ user, setUser }) {
   if (coupon) {
     return (
       <CommonStyled.PageWrap>
+        <Orderer user={user} setUser={setUser} />
         <CommonStyled.PageButton onClick={onCompletePayment}>
           결제하기
         </CommonStyled.PageButton>
