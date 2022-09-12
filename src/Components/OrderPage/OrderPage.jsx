@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as CommonStyled from '../Common/CommonStyled.jsx';
 import Orderer from './Orderer/Orderer.jsx';
+import Request from './Request/Request.jsx';
 
 function OrderPage({ user, setUser }) {
   let userNav = useNavigate();
@@ -73,6 +74,7 @@ function OrderPage({ user, setUser }) {
     return (
       <CommonStyled.PageWrap>
         <Orderer user={user} result={result} setResult={setResult} />
+        <Request />
         <CommonStyled.PageButton onClick={onCompletePayment}>
           결제하기
         </CommonStyled.PageButton>
