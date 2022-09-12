@@ -26,6 +26,31 @@ function OrderPage({ user, setUser }) {
     total_price: 0,
   });
 
+  // REQUEST
+  // 기본 정보
+  const basicRequestOption = [
+    {
+      id: 0,
+      value: 0,
+      label: '벨은 누르지 말아주세요!',
+    },
+    {
+      id: 1,
+      value: 1,
+      label: '문 앞에 놓아 주시고 연락 주세요.',
+    },
+    {
+      id: 2,
+      value: 2,
+      label: '반찬은 안 주셔도 되요.',
+    },
+    {
+      id: 'CUSTOM',
+      value: 'CUSTOM',
+      label: '직접 입력',
+    },
+  ];
+
   // 쿠폰 스테이트
   const [coupon, setCoupon] = useState(null);
   // 쿠폰 데이터 받아오기
@@ -74,7 +99,7 @@ function OrderPage({ user, setUser }) {
     return (
       <CommonStyled.PageWrap>
         <Orderer user={user} result={result} setResult={setResult} />
-        <Request />
+        <Request basicRequestOption={basicRequestOption} />
         <CommonStyled.PageButton onClick={onCompletePayment}>
           결제하기
         </CommonStyled.PageButton>
