@@ -54,6 +54,14 @@ function Request({
     }
   };
 
+  const onChangeCustom = event => {
+    setCustom(event.target.value);
+    setResult(current => ({
+      ...current,
+      request: event.target.value,
+    }));
+  };
+
   return (
     <CommonStyled.OrderPageSection>
       <CommonStyled.OrderPageSectionTitle>
@@ -62,6 +70,14 @@ function Request({
       <Styled.RequestSelect onChange={onChangeSelect}>
         {requestList}
       </Styled.RequestSelect>
+      {isCustom ? (
+        <>
+          <Styled.CustomTextArea value={custom} onChange={onChangeCustom} />
+          <Styled.CustomTextLength>{custom.length}/60</Styled.CustomTextLength>
+        </>
+      ) : (
+        <></>
+      )}
     </CommonStyled.OrderPageSection>
   );
 }
