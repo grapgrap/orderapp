@@ -1,9 +1,12 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import * as CommonStyled from '../Common/CommonStyled.jsx';
 import Orderer from './Orderer/Orderer.jsx';
 
 function OrderPage({ user, setUser }) {
+  let userNav = useNavigate();
+
   // 결과 State
   // 주문자 : 주소, 상세주소, 전화번호
   // 주문 요청 사항
@@ -62,12 +65,14 @@ function OrderPage({ user, setUser }) {
         .toString()
         .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}원\n결제완료!`
     );
+
+    userNav('/orderapp');
   };
 
   if (coupon) {
     return (
       <CommonStyled.PageWrap>
-        <Orderer user={user} setUser={setUser} />
+        <Orderer user={user} result={result} setResult={setResult} />
         <CommonStyled.PageButton onClick={onCompletePayment}>
           결제하기
         </CommonStyled.PageButton>
