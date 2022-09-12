@@ -22,7 +22,7 @@ function OrderPage({ user, setUser }) {
       phone_number: user.phone_number,
     },
     request: '벨은 누르지 말아주세요!',
-    payment: '',
+    payment: '온새카드',
     discount: '',
     total_price: 0,
   });
