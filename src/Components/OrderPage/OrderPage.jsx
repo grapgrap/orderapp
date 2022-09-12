@@ -20,7 +20,7 @@ function OrderPage({ user, setUser }) {
       additional_address: user.additional_address,
       phone_number: user.phone_number,
     },
-    request: '',
+    request: '벨은 누르지 말아주세요!',
     payment: '',
     discount: '',
     total_price: 0,
@@ -50,6 +50,8 @@ function OrderPage({ user, setUser }) {
       label: '직접 입력',
     },
   ];
+  // 직접 입력 State
+  const [isCustom, setIsCustom] = useState(false);
 
   // 쿠폰 스테이트
   const [coupon, setCoupon] = useState(null);
@@ -99,7 +101,13 @@ function OrderPage({ user, setUser }) {
     return (
       <CommonStyled.PageWrap>
         <Orderer user={user} result={result} setResult={setResult} />
-        <Request user={user} basicRequestOption={basicRequestOption} />
+        <Request
+          user={user}
+          basicRequestOption={basicRequestOption}
+          isCustom={isCustom}
+          setIsCustom={setIsCustom}
+          setResult={setResult}
+        />
         <CommonStyled.PageButton onClick={onCompletePayment}>
           결제하기
         </CommonStyled.PageButton>

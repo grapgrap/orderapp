@@ -1,8 +1,15 @@
 import { useState } from 'react';
 import * as CommonStyled from '../../Common/CommonStyled.jsx';
 import * as Styled from './Styled.jsx';
+import { CUSTOM } from '../../../Constants.js';
 
-function Request({ user, basicRequestOption }) {
+function Request({
+  user,
+  basicRequestOption,
+  isCustom,
+  setIsCustom,
+  setResult,
+}) {
   const requestList = [];
   const [custom, setCustom] = useState('');
 
@@ -35,12 +42,26 @@ function Request({ user, basicRequestOption }) {
     }
   }
 
+  // Request Select 변경 함수
+  const onChangeSelect = event => {
+    if (event.target.value === CUSTOM) setIsCustom(true);
+    else {
+      setIsCustom(false);
+      setResult(current => ({
+        ...current,
+        request: event.target[event.target.value].innerText,
+      }));
+    }
+  };
+
   return (
     <CommonStyled.OrderPageSection>
       <CommonStyled.OrderPageSectionTitle>
         주문 요청 사항
       </CommonStyled.OrderPageSectionTitle>
-      <Styled.RequestSelect>{requestList}</Styled.RequestSelect>
+      <Styled.RequestSelect onChange={onChangeSelect}>
+        {requestList}
+      </Styled.RequestSelect>
     </CommonStyled.OrderPageSection>
   );
 }
