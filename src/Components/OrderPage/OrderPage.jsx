@@ -94,6 +94,15 @@ function OrderPage({ user, setUser }) {
         .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}원\n결제완료!`
     );
 
+    // 사용자가 직접입력을 선택했을 경우
+    if (isCustom) {
+      if (user.additional_requests.length >= 3) user.additional_requests.pop();
+      setUser(current => ({
+        ...current,
+        additional_requests: [result.request, ...current.additional_requests],
+      }));
+    }
+
     userNav('/orderapp');
   };
 
