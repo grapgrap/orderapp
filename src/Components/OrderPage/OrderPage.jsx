@@ -120,7 +120,7 @@ function OrderPage({ user, setUser }) {
           setResult={setResult}
         />
         <Payment user={user} setResult={setResult} />
-        <Discount />
+        <Discount user={user} coupon={coupon} />
         <CommonStyled.PageButton onClick={onCompletePayment}>
           결제하기
         </CommonStyled.PageButton>
