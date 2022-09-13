@@ -165,6 +165,7 @@ function OrderPage({ user, setUser }) {
         {isMenu ? (
           <CouponMenu
             coupon={coupon}
+            result={result}
             setResult={setResult}
             setIsMenu={setIsMenu}
           />

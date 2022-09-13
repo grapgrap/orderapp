@@ -2,27 +2,35 @@ import * as Styled from './Styled.jsx';
 import * as CommonStyled from '../../Common/CommonStyled.jsx';
 import { COUPON, FIXED, RATED } from '../../../Constants.js';
 
-function CouponMenu({ coupon, setResult, setIsMenu }) {
+function CouponMenu({ coupon, result, setResult, setIsMenu }) {
   const onUseCoupon = event => {
-    const type = coupon.map(coupon => {
-      if (coupon.id === event.target.id) return coupon.type;
-    });
+    const type = coupon
+      .map(coupon => {
+        if (coupon.id === event.target.id) return coupon.type;
+      })
+      .filter(value => value !== undefined)[0];
 
-    const name = coupon.map(coupon => {
-      if (coupon.id === event.target.id) return coupon.name;
-    });
+    const name = coupon
+      .map(coupon => {
+        if (coupon.id === event.target.id) return coupon.name;
+      })
+      .filter(value => value !== undefined)[0];
 
-    const mount = coupon.map(coupon => {
-      if (coupon.id === event.target.id) return coupon.value;
-    });
+    let mount = coupon
+      .map(coupon => {
+        if (coupon.id === event.target.id) return coupon.value;
+      })
+      .filter(value => value !== undefined)[0];
+
+    if (mount > result.total_price) mount = result.total_price;
 
     setResult(current => ({
       ...current,
       discount: COUPON,
       coupon_id: event.target.id,
-      coupon_name: name.filter(value => value !== undefined),
-      dicount_type: type.filter(value => value !== undefined),
-      discount_mount: mount.filter(value => value !== undefined),
+      coupon_name: name,
+      dicount_type: type,
+      discount_mount: mount,
     }));
 
     setIsMenu(false);

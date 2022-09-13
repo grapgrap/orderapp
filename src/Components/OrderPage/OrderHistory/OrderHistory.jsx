@@ -30,10 +30,10 @@ function OrderHistory({ orderList, result, setResult }) {
       discountPrice = 0;
       break;
     case COUPON:
-      switch (result.dicount_type[0]) {
+      switch (result.dicount_type) {
         case FIXED:
-          if (totalPrice >= result.discount_mount[0])
-            discountPrice = result.discount_mount[0];
+          if (totalPrice >= result.discount_mount)
+            discountPrice = result.discount_mount;
           else discountPrice = totalPrice;
 
           discount = (
@@ -48,9 +48,7 @@ function OrderHistory({ orderList, result, setResult }) {
           );
           break;
         case RATED:
-          discountPrice = Math.ceil(
-            (totalPrice * result.discount_mount[0]) / 100
-          );
+          discountPrice = Math.ceil((totalPrice * result.discount_mount) / 100);
           discount = (
             <Styled.OrderHistoryContent key={result.coupon_id}>
               <Styled.OrderHistoryContentSpan>
