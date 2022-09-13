@@ -32,7 +32,10 @@ function OrderHistory({ orderList, result, setResult }) {
     case COUPON:
       switch (result.dicount_type[0]) {
         case FIXED:
-          discountPrice = result.discount_mount[0];
+          if (totalPrice >= result.discount_mount[0])
+            discountPrice = result.discount_mount[0];
+          else discountPrice = totalPrice;
+
           discount = (
             <Styled.OrderHistoryContent key={result.coupon_id}>
               <Styled.OrderHistoryContentSpan>
@@ -43,10 +46,6 @@ function OrderHistory({ orderList, result, setResult }) {
               </Styled.OrderHistoryContentSpan>
             </Styled.OrderHistoryContent>
           );
-          setResult(current => ({
-            ...current,
-            discount_price: discountPrice,
-          }));
           break;
         case RATED:
           discountPrice = Math.ceil(
@@ -62,10 +61,6 @@ function OrderHistory({ orderList, result, setResult }) {
               </Styled.OrderHistoryContentSpan>
             </Styled.OrderHistoryContent>
           );
-          setResult(current => ({
-            ...current,
-            discount_price: discountPrice,
-          }));
           break;
         default:
           break;
@@ -83,21 +78,19 @@ function OrderHistory({ orderList, result, setResult }) {
           </Styled.OrderHistoryContentSpan>
         </Styled.OrderHistoryContent>
       );
-      setResult(current => ({
-        ...current,
-        discount_price: discountPrice,
-      }));
       break;
     default:
       break;
   }
-  console.log(result.discount_mount[0] / 100);
+
   useEffect(() => {
     setResult(current => ({
       ...current,
       total_price: totalPrice,
+      discount_price: discountPrice,
     }));
   }, []);
+
   return (
     <CommonStyled.OrderPageSection>
       <CommonStyled.OrderPageSectionTitle>
