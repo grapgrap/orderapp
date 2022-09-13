@@ -6,7 +6,7 @@ import Discount from './Discount/Discount.jsx';
 import Orderer from './Orderer/Orderer.jsx';
 import Payment from './Payment/Payment.jsx';
 import Request from './Request/Request.jsx';
-import { NONE } from '../../Constants.js';
+import { NONE, COUPON, POINT } from '../../Constants.js';
 import CouponMenu from './Discount/CouponMenu.jsx';
 
 // 기본 정보
@@ -51,6 +51,7 @@ function OrderPage({ user, setUser }) {
     request: '',
     payment: '',
     discount: NONE,
+    coupon_id: '',
     dicount_type: '',
     discount_mount: 0,
     total_price: 0,
@@ -110,6 +111,18 @@ function OrderPage({ user, setUser }) {
         additional_requests: [result.request, ...current.additional_requests],
       }));
     }
+
+    // 사용자가 쿠폰을 사용하여 결제를 했을 경우
+    if (result.discount === COUPON) {
+      const remainCoupon = user.coupons.filter(
+        coupon => coupon !== result.coupon_id
+      );
+      setUser(current => ({
+        ...current,
+        coupons: remainCoupon,
+      }));
+    }
+    console.log(result);
     navigate('/orderapp');
   };
 
@@ -132,7 +145,15 @@ function OrderPage({ user, setUser }) {
           setResult={setResult}
           setIsMenu={setIsMenu}
         />
-        {isMenu ? <CouponMenu coupon={coupon} /> : <></>}
+        {isMenu ? (
+          <CouponMenu
+            coupon={coupon}
+            setResult={setResult}
+            setIsMenu={setIsMenu}
+          />
+        ) : (
+          <></>
+        )}
         <CommonStyled.PageButton onClick={onCompletePayment}>
           결제하기
         </CommonStyled.PageButton>
