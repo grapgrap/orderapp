@@ -87,7 +87,6 @@ function OrderHistory({ orderList, result, setResult }) {
     setResult(current => ({
       ...current,
       total_price: totalPrice,
-      discount_price: discountPrice,
     }));
   }, []);
 
