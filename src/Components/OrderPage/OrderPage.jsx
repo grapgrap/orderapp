@@ -5,8 +5,32 @@ import * as CommonStyled from '../Common/CommonStyled.jsx';
 import Orderer from './Orderer/Orderer.jsx';
 import Request from './Request/Request.jsx';
 
+// 기본 정보
+const basicRequestOption = [
+  {
+    id: 0,
+    value: 0,
+    label: '벨은 누르지 말아주세요!',
+  },
+  {
+    id: 1,
+    value: 1,
+    label: '문 앞에 놓아 주시고 연락 주세요.',
+  },
+  {
+    id: 2,
+    value: 2,
+    label: '반찬은 안 주셔도 되요.',
+  },
+  {
+    id: 'CUSTOM',
+    value: 'CUSTOM',
+    label: '직접 입력',
+  },
+];
+
 function OrderPage({ user, setUser }) {
-  let userNav = useNavigate();
+  const navigate = useNavigate();
 
   // 결과 State
   // 주문자 : 주소, 상세주소, 전화번호
@@ -27,29 +51,6 @@ function OrderPage({ user, setUser }) {
   });
 
   // REQUEST
-  // 기본 정보
-  const basicRequestOption = [
-    {
-      id: 0,
-      value: 0,
-      label: '벨은 누르지 말아주세요!',
-    },
-    {
-      id: 1,
-      value: 1,
-      label: '문 앞에 놓아 주시고 연락 주세요.',
-    },
-    {
-      id: 2,
-      value: 2,
-      label: '반찬은 안 주셔도 되요.',
-    },
-    {
-      id: 'CUSTOM',
-      value: 'CUSTOM',
-      label: '직접 입력',
-    },
-  ];
   // 직접 입력 State
   const [isCustom, setIsCustom] = useState(false);
 
@@ -102,8 +103,7 @@ function OrderPage({ user, setUser }) {
         additional_requests: [result.request, ...current.additional_requests],
       }));
     }
-
-    userNav('/orderapp');
+    navigate('/orderapp');
   };
 
   if (coupon) {
