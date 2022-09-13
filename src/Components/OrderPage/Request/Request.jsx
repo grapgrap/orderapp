@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import * as CommonStyled from '../../Common/CommonStyled.jsx';
 import * as Styled from './Styled.jsx';
-import { CUSTOM } from '../../../Constants.js';
+import { CUSTOM, DEFAULT } from '../../../Constants.js';
 
 function Request({
   user,
@@ -10,37 +10,23 @@ function Request({
   setIsCustom,
   setResult,
 }) {
-  const requestList = [];
   const [custom, setCustom] = useState('');
 
-  for (let i = 0; i < basicRequestOption.length; i++) {
-    if (i !== basicRequestOption.length - 1) {
-      requestList.push(
-        <Styled.RequestSelectOption
-          key={basicRequestOption[i].id}
-          value={basicRequestOption[i].value}
-        >
-          {basicRequestOption[i].label}
-        </Styled.RequestSelectOption>
-      );
-    } else {
-      for (let j = 3; j < user.additional_requests.length + 3; j++) {
-        requestList.push(
-          <Styled.RequestSelectOption key={j} value={j}>
-            {user.additional_requests[j - 3]}
-          </Styled.RequestSelectOption>
-        );
-      }
-      requestList.push(
-        <Styled.RequestSelectOption
-          key={basicRequestOption[i].id}
-          value={basicRequestOption[i].value}
-        >
-          {basicRequestOption[i].label}
-        </Styled.RequestSelectOption>
-      );
-    }
-  }
+  const addRequestList = user.additional_requests.map(option => {
+    return (
+      <Styled.RequestSelectOption key={option} value={option || ''}>
+        {option}
+      </Styled.RequestSelectOption>
+    );
+  });
+
+  const requestList = basicRequestOption.map(option => {
+    return (
+      <Styled.RequestSelectOption key={option.id} value={option.value || ''}>
+        {option.label}
+      </Styled.RequestSelectOption>
+    );
+  });
 
   // Request Select 변경 함수
   const onChangeSelect = event => {
@@ -67,7 +53,11 @@ function Request({
       <CommonStyled.OrderPageSectionTitle>
         주문 요청 사항
       </CommonStyled.OrderPageSectionTitle>
-      <Styled.RequestSelect onChange={onChangeSelect}>
+      <Styled.RequestSelect onChange={onChangeSelect} defaultValue={DEFAULT}>
+        <Styled.RequestSelectOption value={DEFAULT} disabled hidden>
+          선택해주세요.
+        </Styled.RequestSelectOption>
+        {addRequestList}
         {requestList}
       </Styled.RequestSelect>
       {isCustom ? (
