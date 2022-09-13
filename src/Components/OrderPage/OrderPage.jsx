@@ -101,47 +101,52 @@ function OrderPage({ user, setUser }) {
 
   // 결제하기
   const onCompletePayment = () => {
-    alert(
-      `주소: ${result.orderer.address}\n상세주소: ${
-        result.orderer.additional_address
-      }\n전화번호: ${result.orderer.phone_number}\n주문 요청 사항: ${
-        result.request
-      }\n결제 수단: ${result.payment}\n할인 수단: ${
-        result.discount
-      }\n총 결제 금액: ${(result.total_price - result.discount_price)
-        .toString()
-        .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}원\n결제완료!`
-    );
-
-    // 사용자가 직접입력을 선택했을 경우
-    if (isCustom) {
-      if (user.additional_requests.length >= 3) user.additional_requests.pop();
-      setUser(current => ({
-        ...current,
-        additional_requests: [result.request, ...current.additional_requests],
-      }));
-    }
-
-    // 사용자가 쿠폰을 사용하여 결제를 했을 경우
-    if (result.discount === COUPON) {
-      const remainCoupon = user.coupons.filter(
-        coupon => coupon !== result.coupon_id
+    if (!result.request) alert(`주문 요청 사항을 선택해주세요.`);
+    else if (!result.payment) alert(`결제 수단을 선택해주세요!`);
+    else {
+      alert(
+        `주소: ${result.orderer.address}\n상세주소: ${
+          result.orderer.additional_address
+        }\n전화번호: ${result.orderer.phone_number}\n주문 요청 사항: ${
+          result.request
+        }\n결제 수단: ${result.payment}\n할인 수단: ${
+          result.discount
+        }\n총 결제 금액: ${(result.total_price - result.discount_price)
+          .toString()
+          .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}원\n결제완료!`
       );
-      setUser(current => ({
-        ...current,
-        coupons: remainCoupon,
-      }));
-    }
 
-    // 사용자가 포인트를 이용하여 결제를 했을 경우
-    if (result.discount === POINT) {
-      setUser(current => ({
-        ...current,
-        points: current.points - result.discount_mount,
-      }));
+      // 사용자가 직접입력을 선택했을 경우
+      if (isCustom) {
+        if (user.additional_requests.length >= 3)
+          user.additional_requests.pop();
+        setUser(current => ({
+          ...current,
+          additional_requests: [result.request, ...current.additional_requests],
+        }));
+      }
+
+      // 사용자가 쿠폰을 사용하여 결제를 했을 경우
+      if (result.discount === COUPON) {
+        const remainCoupon = user.coupons.filter(
+          coupon => coupon !== result.coupon_id
+        );
+        setUser(current => ({
+          ...current,
+          coupons: remainCoupon,
+        }));
+      }
+
+      // 사용자가 포인트를 이용하여 결제를 했을 경우
+      if (result.discount === POINT) {
+        setUser(current => ({
+          ...current,
+          points: current.points - result.discount_mount,
+        }));
+      }
+      console.log(result);
+      navigate('/orderapp');
     }
-    console.log(result);
-    navigate('/orderapp');
   };
 
   if (coupon) {
