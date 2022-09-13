@@ -34,6 +34,13 @@ const basicRequestOption = [
   },
 ];
 
+// 장바구니
+const orderList = [
+  { id: 0, name: '태백시 감자올리브', price: 18000 },
+  { id: 1, name: '태백산 감자버거', price: 5400 },
+  { id: 2, name: '황지동 감자족발', price: 32000 },
+];
+
 function OrderPage({ user, setUser }) {
   const navigate = useNavigate();
 
@@ -163,7 +170,7 @@ function OrderPage({ user, setUser }) {
         ) : (
           <></>
         )}
-        <OrderHistory />
+        <OrderHistory orderList={orderList} />
         <CommonStyled.PageButton onClick={onCompletePayment}>
           결제하기
         </CommonStyled.PageButton>
