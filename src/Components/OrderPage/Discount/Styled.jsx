@@ -25,4 +25,5 @@ export const DiscountBtn = styled.button`
   border: none;
   background: rgb(134, 134, 252);
   color: white;
+  cursor: pointer;
 `;

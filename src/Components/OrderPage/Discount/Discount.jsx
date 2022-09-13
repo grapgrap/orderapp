@@ -1,7 +1,15 @@
+import { useState } from 'react';
 import * as CommonStyled from '../../Common/CommonStyled.jsx';
 import * as Styled from './Styled.jsx';
 
-function Discount({ user, coupon }) {
+function Discount({ user, result, coupon }) {
+  const [point, setPoint] = useState(0);
+  // 포인트 모두 사용 기능
+  const onUsePointAll = event => {
+    if (user.points >= result.total_price) setPoint(result.total_price);
+    else setPoint(user.points);
+  };
+
   return (
     <CommonStyled.OrderPageSection>
       <CommonStyled.OrderPageSectionTitle>
@@ -39,8 +47,11 @@ function Discount({ user, coupon }) {
             type="number"
             min="1000"
             step="100"
+            value={point}
           ></Styled.DiscountInput>
-          <Styled.DiscountBtn>모두 사용</Styled.DiscountBtn>
+          <Styled.DiscountBtn onClick={onUsePointAll}>
+            모두 사용
+          </Styled.DiscountBtn>
         </Styled.DiscountInputWrap>
       </Styled.DiscountSection>
     </CommonStyled.OrderPageSection>
