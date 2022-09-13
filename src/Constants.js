@@ -9,5 +9,5 @@ export const COUPON = '쿠폰 사용';
 export const POINT = '포인트 사용';
 
 // 쿠폰
-export const FIXED = 'FIXED';
-export const RATED = 'RATED';
+export const FIXED = 'fixed';
+export const RATED = 'rated';

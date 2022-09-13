@@ -132,8 +132,7 @@ function OrderPage({ user, setUser }) {
           setResult={setResult}
           setIsMenu={setIsMenu}
         />
-        {isMenu ? <CouponMenu /> : <></>}
-
+        {isMenu ? <CouponMenu coupon={coupon} /> : <></>}
         <CommonStyled.PageButton onClick={onCompletePayment}>
           결제하기
         </CommonStyled.PageButton>
