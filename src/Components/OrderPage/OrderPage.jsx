@@ -122,6 +122,14 @@ function OrderPage({ user, setUser }) {
         coupons: remainCoupon,
       }));
     }
+
+    // 사용자가 포인트를 이용하여 결제를 했을 경우
+    if (result.discount === POINT) {
+      setUser(current => ({
+        ...current,
+        points: current.points - result.discount_mount,
+      }));
+    }
     console.log(result);
     navigate('/orderapp');
   };
