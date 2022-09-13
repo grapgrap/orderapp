@@ -3,8 +3,12 @@ import * as CommonStyled from '../../Common/CommonStyled.jsx';
 import * as Styled from './Styled.jsx';
 import { POINT, FIXED } from '../../../Constants.js';
 
-function Discount({ user, result, coupon, setResult }) {
+function Discount({ user, result, coupon, setResult, setIsMenu }) {
   const [point, setPoint] = useState(0);
+
+  // 쿠폰 메뉴 Display
+  const onDisplayMenu = () => setIsMenu(true);
+
   // 포인트 모두 사용 기능
   const onUsePointAll = () => {
     if (user.points >= result.total_price) {
@@ -56,7 +60,7 @@ function Discount({ user, result, coupon, setResult }) {
             placeholder="쿠폰을 선택해주세요."
             defaultValue={''}
           />
-          <Styled.DiscountBtn>선택</Styled.DiscountBtn>
+          <Styled.DiscountBtn onClick={onDisplayMenu}>선택</Styled.DiscountBtn>
         </Styled.DiscountInputWrap>
       </Styled.DiscountSection>
       <Styled.DiscountSection>
