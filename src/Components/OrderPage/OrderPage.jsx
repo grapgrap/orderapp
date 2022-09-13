@@ -8,6 +8,7 @@ import Payment from './Payment/Payment.jsx';
 import Request from './Request/Request.jsx';
 import { NONE, COUPON, POINT } from '../../Constants.js';
 import CouponMenu from './Discount/CouponMenu.jsx';
+import OrderHistory from './OrderHistory/OrderHistory.jsx';
 
 // 기본 정보
 const basicRequestOption = [
@@ -162,6 +163,7 @@ function OrderPage({ user, setUser }) {
         ) : (
           <></>
         )}
+        <OrderHistory />
         <CommonStyled.PageButton onClick={onCompletePayment}>
           결제하기
         </CommonStyled.PageButton>
