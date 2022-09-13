@@ -6,6 +6,7 @@ import Discount from './Discount/Discount.jsx';
 import Orderer from './Orderer/Orderer.jsx';
 import Payment from './Payment/Payment.jsx';
 import Request from './Request/Request.jsx';
+import { NONE } from '../../Constants.js';
 
 // 기본 정보
 const basicRequestOption = [
@@ -48,7 +49,7 @@ function OrderPage({ user, setUser }) {
     },
     request: '',
     payment: '',
-    discount: '',
+    discount: NONE,
     dicount_type: '',
     discount_mount: 0,
     total_price: 0,
@@ -122,7 +123,12 @@ function OrderPage({ user, setUser }) {
           setResult={setResult}
         />
         <Payment user={user} setResult={setResult} />
-        <Discount user={user} coupon={coupon} result={result} />
+        <Discount
+          user={user}
+          coupon={coupon}
+          result={result}
+          setResult={setResult}
+        />
         <CommonStyled.PageButton onClick={onCompletePayment}>
           결제하기
         </CommonStyled.PageButton>

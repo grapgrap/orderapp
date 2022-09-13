@@ -1,13 +1,40 @@
 import { useState } from 'react';
 import * as CommonStyled from '../../Common/CommonStyled.jsx';
 import * as Styled from './Styled.jsx';
+import { POINT, FIXED } from '../../../Constants.js';
 
-function Discount({ user, result, coupon }) {
+function Discount({ user, result, coupon, setResult }) {
   const [point, setPoint] = useState(0);
   // 포인트 모두 사용 기능
-  const onUsePointAll = event => {
-    if (user.points >= result.total_price) setPoint(result.total_price);
-    else setPoint(user.points);
+  const onUsePointAll = () => {
+    if (user.points >= result.total_price) {
+      setPoint(result.total_price);
+      setResult(current => ({
+        ...current,
+        discount: POINT,
+        dicount_type: FIXED,
+        discount_mount: result.total_price,
+      }));
+    } else {
+      setPoint(user.points);
+      setResult(current => ({
+        ...current,
+        discount: POINT,
+        dicount_type: FIXED,
+        discount_mount: result.total_price,
+      }));
+    }
+  };
+
+  // 포인트 사용 함수
+  const onUsePoint = event => {
+    setPoint(event.target.value);
+    setResult(current => ({
+      ...current,
+      discount: POINT,
+      dicount_type: FIXED,
+      discount_mount: event.target.value,
+    }));
   };
 
   return (
@@ -48,6 +75,7 @@ function Discount({ user, result, coupon }) {
             min="1000"
             step="100"
             value={point}
+            onChange={onUsePoint}
           ></Styled.DiscountInput>
           <Styled.DiscountBtn onClick={onUsePointAll}>
             모두 사용
