@@ -49,6 +49,8 @@ function OrderPage({ user, setUser }) {
     request: '',
     payment: '',
     discount: '',
+    dicount_type: '',
+    discount_mount: 0,
     total_price: 0,
   });
 
