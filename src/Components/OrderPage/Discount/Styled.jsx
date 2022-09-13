@@ -18,6 +18,7 @@ export const DiscountInputWrap = styled.div``;
 export const DiscountInput = styled.input`
   margin-right: 0.5rem;
   width: 13rem;
+  text-overflow: ellipsis;
 `;
 
 export const DiscountBtn = styled.button`
