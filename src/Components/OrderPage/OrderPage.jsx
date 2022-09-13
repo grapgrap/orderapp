@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as CommonStyled from '../Common/CommonStyled.jsx';
+import Discount from './Discount/Discount.jsx';
 import Orderer from './Orderer/Orderer.jsx';
 import Payment from './Payment/Payment.jsx';
 import Request from './Request/Request.jsx';
@@ -119,6 +120,7 @@ function OrderPage({ user, setUser }) {
           setResult={setResult}
         />
         <Payment user={user} setResult={setResult} />
+        <Discount />
         <CommonStyled.PageButton onClick={onCompletePayment}>
           결제하기
         </CommonStyled.PageButton>
