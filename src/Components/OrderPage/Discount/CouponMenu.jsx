@@ -8,6 +8,10 @@ function CouponMenu({ coupon, setResult, setIsMenu }) {
       if (coupon.id === event.target.id) return coupon.type;
     });
 
+    const name = coupon.map(coupon => {
+      if (coupon.id === event.target.id) return coupon.name;
+    });
+
     const mount = coupon.map(coupon => {
       if (coupon.id === event.target.id) return coupon.value;
     });
@@ -16,6 +20,7 @@ function CouponMenu({ coupon, setResult, setIsMenu }) {
       ...current,
       discount: COUPON,
       coupon_id: event.target.id,
+      coupon_name: name.filter(value => value !== undefined),
       dicount_type: type.filter(value => value !== undefined),
       discount_mount: mount.filter(value => value !== undefined),
     }));

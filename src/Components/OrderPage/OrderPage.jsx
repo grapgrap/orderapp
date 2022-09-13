@@ -52,6 +52,7 @@ function OrderPage({ user, setUser }) {
     payment: '',
     discount: NONE,
     coupon_id: '',
+    coupon_name: '',
     dicount_type: '',
     discount_mount: 0,
     total_price: 0,
@@ -148,7 +149,6 @@ function OrderPage({ user, setUser }) {
         <Payment user={user} setResult={setResult} />
         <Discount
           user={user}
-          coupon={coupon}
           result={result}
           setResult={setResult}
           setIsMenu={setIsMenu}

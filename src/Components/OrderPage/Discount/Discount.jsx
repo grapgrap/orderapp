@@ -3,7 +3,7 @@ import * as CommonStyled from '../../Common/CommonStyled.jsx';
 import * as Styled from './Styled.jsx';
 import { POINT, FIXED } from '../../../Constants.js';
 
-function Discount({ user, result, coupon, setResult, setIsMenu }) {
+function Discount({ user, result, setResult, setIsMenu }) {
   const [point, setPoint] = useState(0);
 
   // 쿠폰 메뉴 Display
@@ -58,7 +58,7 @@ function Discount({ user, result, coupon, setResult, setIsMenu }) {
           <Styled.DiscountInput
             type="text"
             placeholder="쿠폰을 선택해주세요."
-            defaultValue={''}
+            defaultValue={result.coupon_name}
           />
           <Styled.DiscountBtn onClick={onDisplayMenu}>선택</Styled.DiscountBtn>
         </Styled.DiscountInputWrap>
