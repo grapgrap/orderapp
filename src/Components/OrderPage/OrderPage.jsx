@@ -44,7 +44,7 @@ function OrderPage({ user, setUser }) {
       additional_address: user.additional_address,
       phone_number: user.phone_number,
     },
-    request: '벨은 누르지 말아주세요!',
+    request: '',
     payment: '',
     discount: '',
     total_price: 0,
