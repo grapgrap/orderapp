@@ -5,7 +5,7 @@ import * as CommonStyled from '../Common/CommonStyled.jsx';
 import Orderer from './Orderer/Orderer.jsx';
 
 function OrderPage({ user, setUser }) {
-  let userNav = useNavigate();
+  const navigate = useNavigate();
 
   // 결과 State
   // 주문자 : 주소, 상세주소, 전화번호
@@ -66,7 +66,7 @@ function OrderPage({ user, setUser }) {
         .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}원\n결제완료!`
     );
 
-    userNav('/orderapp');
+    navigate('/orderapp');
   };
 
   if (coupon) {
