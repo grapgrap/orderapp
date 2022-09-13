@@ -7,6 +7,7 @@ import Orderer from './Orderer/Orderer.jsx';
 import Payment from './Payment/Payment.jsx';
 import Request from './Request/Request.jsx';
 import { NONE } from '../../Constants.js';
+import CouponMenu from './Discount/CouponMenu.jsx';
 
 // 기본 정보
 const basicRequestOption = [
@@ -61,6 +62,7 @@ function OrderPage({ user, setUser }) {
 
   // 쿠폰 스테이트
   const [coupon, setCoupon] = useState(null);
+  const [isMenu, setIsMenu] = useState(false);
   // 쿠폰 데이터 받아오기
   const getCoupon = async () => {
     const couponList = [];
@@ -128,7 +130,10 @@ function OrderPage({ user, setUser }) {
           coupon={coupon}
           result={result}
           setResult={setResult}
+          setIsMenu={setIsMenu}
         />
+        {isMenu ? <CouponMenu /> : <></>}
+
         <CommonStyled.PageButton onClick={onCompletePayment}>
           결제하기
         </CommonStyled.PageButton>
