@@ -1,5 +1,7 @@
 import * as CommonStyled from '../../Common/CommonStyled.jsx';
 import * as Styled from './Styled.jsx';
+import { NONE, COUPON, POINT, FIXED, RATED } from '../../../Constants.js';
+import { useEffect } from 'react';
 
 function OrderHistory({ orderList, result, setResult }) {
   let totalPrice = 0;
@@ -19,6 +21,83 @@ function OrderHistory({ orderList, result, setResult }) {
     );
   });
 
+  // 할인
+  let discount = [];
+  let discountPrice = 0;
+  switch (result.discount) {
+    case NONE:
+      discount = [];
+      discountPrice = 0;
+      break;
+    case COUPON:
+      switch (result.dicount_type[0]) {
+        case FIXED:
+          discountPrice = result.discount_mount[0];
+          discount = (
+            <Styled.OrderHistoryContent key={result.coupon_id}>
+              <Styled.OrderHistoryContentSpan>
+                * 쿠폰
+              </Styled.OrderHistoryContentSpan>
+              <Styled.OrderHistoryContentSpan>
+                - {discountPrice} 원
+              </Styled.OrderHistoryContentSpan>
+            </Styled.OrderHistoryContent>
+          );
+          setResult(current => ({
+            ...current,
+            discount_price: discountPrice,
+          }));
+          break;
+        case RATED:
+          discountPrice = Math.ceil(
+            (totalPrice * result.discount_mount[0]) / 100
+          );
+          discount = (
+            <Styled.OrderHistoryContent key={result.coupon_id}>
+              <Styled.OrderHistoryContentSpan>
+                * 쿠폰
+              </Styled.OrderHistoryContentSpan>
+              <Styled.OrderHistoryContentSpan>
+                - {discountPrice} 원
+              </Styled.OrderHistoryContentSpan>
+            </Styled.OrderHistoryContent>
+          );
+          setResult(current => ({
+            ...current,
+            discount_price: discountPrice,
+          }));
+          break;
+        default:
+          break;
+      }
+      break;
+    case POINT:
+      discountPrice = result.discount_mount;
+      discount = (
+        <Styled.OrderHistoryContent key={POINT}>
+          <Styled.OrderHistoryContentSpan>
+            * 포인트
+          </Styled.OrderHistoryContentSpan>
+          <Styled.OrderHistoryContentSpan>
+            -{discountPrice} 원
+          </Styled.OrderHistoryContentSpan>
+        </Styled.OrderHistoryContent>
+      );
+      setResult(current => ({
+        ...current,
+        discount_price: discountPrice,
+      }));
+      break;
+    default:
+      break;
+  }
+  console.log(result.discount_mount[0] / 100);
+  useEffect(() => {
+    setResult(current => ({
+      ...current,
+      total_price: totalPrice,
+    }));
+  }, []);
   return (
     <CommonStyled.OrderPageSection>
       <CommonStyled.OrderPageSectionTitle>
@@ -26,12 +105,13 @@ function OrderHistory({ orderList, result, setResult }) {
       </CommonStyled.OrderPageSectionTitle>
       <Styled.OrderHistorySection>
         {orderBasket}
+        {discount}
         <Styled.OrderHistoryContent key="RESULT">
           <Styled.OrderHistoryContentSpan>
             총 결제 금액
           </Styled.OrderHistoryContentSpan>
           <Styled.OrderHistoryContentSpan>
-            {totalPrice} 원
+            {totalPrice - discountPrice} 원
           </Styled.OrderHistoryContentSpan>
         </Styled.OrderHistoryContent>
       </Styled.OrderHistorySection>

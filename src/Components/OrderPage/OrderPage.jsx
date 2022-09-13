@@ -63,6 +63,7 @@ function OrderPage({ user, setUser }) {
     coupon_name: '',
     dicount_type: '',
     discount_mount: 0,
+    discount_price: 0,
     total_price: 0,
   });
 
@@ -170,7 +171,11 @@ function OrderPage({ user, setUser }) {
         ) : (
           <></>
         )}
-        <OrderHistory orderList={orderList} />
+        <OrderHistory
+          orderList={orderList}
+          result={result}
+          setResult={setResult}
+        />
         <CommonStyled.PageButton onClick={onCompletePayment}>
           결제하기
         </CommonStyled.PageButton>
