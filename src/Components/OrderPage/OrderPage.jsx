@@ -108,7 +108,7 @@ function OrderPage({ user, setUser }) {
         result.request
       }\n결제 수단: ${result.payment}\n할인 수단: ${
         result.discount
-      }\n총 결제 금액: ${result.total_price
+      }\n총 결제 금액: ${(result.total_price - result.discount_price)
         .toString()
         .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ',')}원\n결제완료!`
     );

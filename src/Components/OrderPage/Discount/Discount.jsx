@@ -18,6 +18,7 @@ function Discount({ user, result, setResult, setIsMenu }) {
         discount: POINT,
         dicount_type: FIXED,
         discount_mount: result.total_price,
+        discount_price: result.total_price,
       }));
     } else {
       setPoint(user.points);
@@ -25,7 +26,8 @@ function Discount({ user, result, setResult, setIsMenu }) {
         ...current,
         discount: POINT,
         dicount_type: FIXED,
-        discount_mount: result.total_price,
+        discount_mount: user.points,
+        discount_price: user.points,
       }));
     }
   };
